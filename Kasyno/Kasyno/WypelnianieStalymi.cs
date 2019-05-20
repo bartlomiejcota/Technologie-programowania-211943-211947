@@ -2,7 +2,7 @@
 
 namespace Kasyno
 {
-    public class WypelnianieStalymi : IWypelnianieStalymi
+    public class WypelnianieStalymi : IWypelnianieStalymi // WypelnianieStalymi
     {
         public void WypelnijDanymi(ref DataContext context)
         {
