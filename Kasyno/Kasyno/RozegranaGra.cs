@@ -2,7 +2,7 @@
 
 namespace Kasyno
 {
-    class RozegranaGra //Opis stanu
+    public class RozegranaGra //Opis stanu
     {
         public int IdRozegranejGry { get; set; }
         public Gra Gra { get; set; }

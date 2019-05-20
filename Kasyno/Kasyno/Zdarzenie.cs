@@ -2,7 +2,7 @@
 
 namespace Kasyno
 {
-    class Zdarzenie // Zdarzenie
+    public class Zdarzenie // Zdarzenie
     {
         public Gracz UczestnikGry { get; set; }
         public RozegranaGra UkonczonaGra { get; set; }

@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Kasyno
 {
-    class DataContext // DataContext
+    public class DataContext // DataContext
     {
         public List<Gracz> ListaGraczy;
         public Dictionary<int, Gra> ListaGier;
         public ObservableCollection<RozegranaGra> ListaRozegranychGier;
         public ObservableCollection<Zdarzenie> ListaZdarzen;
 
-        public DataContext(List<Gracz> listaGraczy, Dictionary<int, Gra> listaGier, ObservableCollection<RozegranaGra> listaRozegranychGier, ObservableCollection<Zdarzenie> listaZdarzen)
+        public DataContext()
         {
-            ListaGraczy = listaGraczy;
-            ListaGier = listaGier;
-            ListaRozegranychGier = listaRozegranychGier;
-            ListaZdarzen = listaZdarzen;
+            ListaGraczy = new List<Gracz>();
+            ListaGier = new Dictionary<int, Gra>();
+            ListaRozegranychGier = new ObservableCollection<RozegranaGra>();
+            ListaZdarzen = new ObservableCollection<Zdarzenie>();
         }
     }
 }
