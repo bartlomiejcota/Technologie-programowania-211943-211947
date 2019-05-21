@@ -23,7 +23,7 @@ namespace Kasyno
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"{IdRozegranejGry}, {Gra.ToString()}, {CzasRozpoczeciaGry.ToString("G")}, {CzasTrwaniaGry.ToString("hh:mm:ss")}, {OplataWejsciowa}, {MinimalnyDepozyt}";
         }
     }
 }

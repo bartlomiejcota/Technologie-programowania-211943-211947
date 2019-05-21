@@ -19,6 +19,7 @@ namespace Kasyno
         // Get all
         IEnumerable<Gracz> GetAllGracz();
         IEnumerable<KeyValuePair<int, Gra>> GetAllGra();
+        IEnumerable<Gra> GetAllGraIEnumerable();
         IEnumerable<RozegranaGra> GetAllRozegranaGra();
         IEnumerable<Zdarzenie> GetAllZdarzenie();
 

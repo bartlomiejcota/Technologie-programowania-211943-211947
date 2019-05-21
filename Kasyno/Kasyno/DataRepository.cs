@@ -60,6 +60,11 @@ namespace Kasyno
             return Context.ListaGier;
         }
 
+        public IEnumerable<Gra> GetAllGraIEnumerable()
+        {
+            return Context.ListaGier.Values;
+        }
+
         public IEnumerable<Gracz> GetAllGracz()
         {
             return Context.ListaGraczy;

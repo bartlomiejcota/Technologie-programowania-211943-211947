@@ -29,7 +29,7 @@ namespace Kasyno
             context.ListaZdarzen.Add(new Zdarzenie(context.ListaGraczy[1], context.ListaRozegranychGier[1], new DateTime(2019, 1, 2, 21, 11, 54), new TimeSpan(0, 15, 33), 88.00));
             context.ListaZdarzen.Add(new Zdarzenie(context.ListaGraczy[2], context.ListaRozegranychGier[2], new DateTime(2019, 1, 3, 20, 35, 30), new TimeSpan(0, 56, 44), 0.00));
             context.ListaZdarzen.Add(new Zdarzenie(context.ListaGraczy[3], context.ListaRozegranychGier[3], new DateTime(2019, 1, 4, 22, 40, 24), new TimeSpan(1, 1, 32), 120.00));
-            context.ListaZdarzen.Add(new Zdarzenie(context.ListaGraczy[0], context.ListaRozegranychGier[0], new DateTime(2019, 1, 1, 20, 10, 15), new TimeSpan(0, 31, 35), 150.00));
+            context.ListaZdarzen.Add(new Zdarzenie(context.ListaGraczy[1], context.ListaRozegranychGier[0], new DateTime(2019, 1, 1, 20, 10, 15), new TimeSpan(0, 31, 35), 150.00));
         }
     }
 }

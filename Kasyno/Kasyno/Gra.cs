@@ -2,7 +2,7 @@
 {
     public class Gra // Wykaz
     {
-        public int IdGry { get;  }
+        public int IdGry { get; set; }
         public string NazwaGry { get; set; }
         public string InformacjeOGrze { get; set; }
 
