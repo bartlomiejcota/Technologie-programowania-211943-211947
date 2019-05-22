@@ -3,7 +3,7 @@ using Kasyno;
 
 namespace WypelnianieDanymiTestowymi
 {
-    public class WypelnianieStalymi : IWypelnianieStalymi // WypelnianieStalymi
+    public class WypelnianieStalymi : IWypelnianieDanymi // WypelnianieStalymi
     {
         public void WypelnijDanymi(ref DataContext context)
         {

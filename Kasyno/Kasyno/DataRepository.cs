@@ -6,7 +6,7 @@ namespace Kasyno
     {
         private DataContext Context;
 
-        public DataRepository(IWypelnianieStalymi wstrzykiwanieStalych)
+        public DataRepository(IWypelnianieDanymi wstrzykiwanieStalych)
         {
             Context = new DataContext();
             wstrzykiwanieStalych.WypelnijDanymi(ref Context);

@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DataRepositoryTest.cs" />
     <Compile Include="DataServiceTest.cs" />
+    <Compile Include="WypelnianieLosowymiTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
