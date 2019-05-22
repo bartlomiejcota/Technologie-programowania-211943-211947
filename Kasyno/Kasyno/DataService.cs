@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Kasyno
 {
-    class DataService : IDataService // DataService
+    public class DataService : IDataService // DataService
     {
         private IDataRepository Repository;
 

@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kasyno", "Kasyno\Kasyno.csproj", "{315BFF9F-F05B-449F-ABB6-7200AC9D5644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kasyno", "Kasyno\Kasyno.csproj", "{315BFF9F-F05B-449F-ABB6-7200AC9D5644}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestKasyno", "UnitTestKasyno\UnitTestKasyno.csproj", "{836CD58D-DC34-44C8-914A-792B2F6C670B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WypelnianieDanymiTestowymi", "WypelnianieDanymiTestowymi\WypelnianieDanymiTestowymi.csproj", "{9F756E2B-D6EF-4C3E-9997-F33C15BF2B78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{836CD58D-DC34-44C8-914A-792B2F6C670B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{836CD58D-DC34-44C8-914A-792B2F6C670B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{836CD58D-DC34-44C8-914A-792B2F6C670B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F756E2B-D6EF-4C3E-9997-F33C15BF2B78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F756E2B-D6EF-4C3E-9997-F33C15BF2B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F756E2B-D6EF-4C3E-9997-F33C15BF2B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F756E2B-D6EF-4C3E-9997-F33C15BF2B78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

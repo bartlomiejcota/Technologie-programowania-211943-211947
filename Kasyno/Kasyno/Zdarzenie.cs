@@ -21,7 +21,7 @@ namespace Kasyno
 
         public override string ToString()
         {
-            return $"{UczestnikGry.ToString()}, {UkonczonaGra.ToString()}, {CzasRozpoczeciaGry.ToString("G")}, {CzasTrwaniaGry.ToString("hh:mm:ss")}, {Wygrana}";
+            return $"{UczestnikGry.ToString()}, {UkonczonaGra.ToString()}, {CzasRozpoczeciaGry.ToString("G")}, {CzasTrwaniaGry.ToString()}, {Wygrana}";
         }
     }
 }

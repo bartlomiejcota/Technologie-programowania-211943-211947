@@ -3,13 +3,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Kasyno;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WypelnianieDanymiTestowymi;
 
 namespace UnitTestKasyno
 {
     [TestClass]
-    public class DataRepositoryTest
+    public class DataRepositoryTest // DataRepository test
     {
         IDataRepository testDataRepository = new DataRepository(new WypelnianieStalymi());
 
@@ -95,7 +94,17 @@ namespace UnitTestKasyno
         [TestMethod]
         public void GetAllGraTest()
         {
-            
+            IEnumerable<KeyValuePair<int, Gra>> gry = testDataRepository.GetAllGra();
+            Assert.AreEqual(4, gry.Count());
+            Assert.AreEqual("Bakarat", gry.ElementAt(2).Value.NazwaGry);
+        }
+
+        [TestMethod]
+        public void GetAllGraIEnumerableTest()
+        {
+            IEnumerable<Gra> gry = testDataRepository.GetAllGraIEnumerable();
+            Assert.AreEqual(4, gry.Count());
+            Assert.AreEqual("Bakarat", gry.ElementAt(2).NazwaGry);
         }
 
         [TestMethod]
@@ -159,7 +168,7 @@ namespace UnitTestKasyno
         }
 
         [TestMethod]
-        public void GetZdarzenieTset()
+        public void GetZdarzenieTest()
         {
             Zdarzenie zdarzenie1 = testDataRepository.GetZdarzenie(0);
             Assert.AreEqual(0, zdarzenie1.UczestnikGry.IdGracza);
