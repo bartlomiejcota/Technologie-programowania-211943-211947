@@ -1,9 +1,0 @@
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\bin\Debug\WypelnianieDanymiTestowymi.dll
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\bin\Debug\WypelnianieDanymiTestowymi.pdb
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\bin\Debug\Kasyno.dll
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\bin\Debug\Kasyno.pdb
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\obj\Debug\WypelnianieDanymiTestowymi.csprojAssemblyReference.cache
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\obj\Debug\WypelnianieDanymiTestowymi.csproj.CoreCompileInputs.cache
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\obj\Debug\WypelnianieDanymiTestowymi.csproj.CopyComplete
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\obj\Debug\WypelnianieDanymiTestowymi.dll
-C:\Users\bartlomiej.cota\source\repos\Kasyno\WypelnianieDanymiTestowymi\obj\Debug\WypelnianieDanymiTestowymi.pdb

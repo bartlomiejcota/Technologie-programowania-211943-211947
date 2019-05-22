@@ -1,9 +1,0 @@
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\bin\Debug\netstandard2.0\Kasyno.deps.json
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\bin\Debug\netstandard2.0\Kasyno.dll
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\bin\Debug\netstandard2.0\Kasyno.pdb
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\obj\Debug\netstandard2.0\Kasyno.csprojAssemblyReference.cache
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\obj\Debug\netstandard2.0\Kasyno.csproj.CoreCompileInputs.cache
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\obj\Debug\netstandard2.0\Kasyno.AssemblyInfoInputs.cache
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\obj\Debug\netstandard2.0\Kasyno.AssemblyInfo.cs
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\obj\Debug\netstandard2.0\Kasyno.dll
-C:\Users\bartlomiej.cota\source\repos\Kasyno\Kasyno\obj\Debug\netstandard2.0\Kasyno.pdb
