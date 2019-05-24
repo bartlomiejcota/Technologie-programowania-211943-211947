@@ -295,5 +295,70 @@ namespace WarstwaUslug
 
             }
         }
+
+        // Wypełnianie danymi
+        public static void WypelnijDanymi(int iloscGraczy, int iloscGier, int iloscRozegranychGier, int iloscZdarzen)
+        {
+            // Dodawanie graczy
+            int iloscGraczyPrzed = DataRepository.ReadAllGracz().Last().IdGracza;
+            for (int i = iloscGraczyPrzed + 1; i < iloscGraczyPrzed + 1 + iloscGraczy; i++)
+            {
+                Gracz gracz = new Gracz()
+                {
+                    IdGracza = i,
+                    Imie = string.Concat("Gracz", i),
+                    Nazwisko = string.Concat("Graczowski", i),
+                    DataUrodzin = new DateTime(1950 + i % 50, i % 11 + 1, i % 28 + 1)
+                };
+
+                DataRepository.CreateGracz(gracz);
+            }
+
+            // Dodawanie gier
+            int iloscGierPzed = DataRepository.ReadAllGra().Last().IdGry;
+            for (int i = iloscGierPzed + 1; i < iloscGierPzed + 1 + iloscGier; i++)
+            {
+                Gra gra = new Gra()
+                {
+                    IdGry = i,
+                    NazwaGry = string.Concat("Gra", i),
+                    InformacjeOGrze = string.Concat("Opis o grze ", i)
+                };
+
+                DataRepository.CreateGra(gra);
+            }
+
+            // Dodawanie rozegranych gier
+            int iloscRozegranychGierPrzed = DataRepository.ReadAllRozegranaGra().Last().IdRozegranejGry;
+            for (int i = iloscRozegranychGierPrzed + 1; i < iloscRozegranychGierPrzed + 1 + iloscRozegranychGier; i++)
+            {
+                RozegranaGra rozegranaGra = new RozegranaGra()
+                {
+                    IdRozegranejGry = i,
+                    Gra = i % DataRepository.ReadAllGra().Count(),
+                    CzasRozpoczeciaGry = new DateTime(1950 + i % 50, i % 12 + 1, i % 28 + 1),
+                    CzasTrwaniaGry = new TimeSpan(i % 24, i % 60, i % 59 + 1),
+                    OplataWejsciowa = (i % 5) * 5,
+                    MinimalnyDepozyt = (i % 6) * 6
+                };
+
+                DataRepository.CreateRozegranaGra(rozegranaGra);
+            }
+
+            // Dodawanie Zdarzeń
+            int iloscZdarzenPrzed = DataRepository.ReadAllZdarzenie().Last().IdZdarzenia;
+            for (int i = iloscZdarzenPrzed + 1; i < iloscZdarzenPrzed + 1 + iloscZdarzen; i++)
+            {
+                Zdarzenie zdarzenie = new Zdarzenie()
+                {
+                    IdZdarzenia = i,
+                    UczestnikGry = i % DataRepository.ReadAllGracz().Count(),
+                    UkonczonaGra = i % DataRepository.ReadAllRozegranaGra().Count(),
+                    Wygrana = (i % 10) * 10
+                };
+
+                DataRepository.CreateZdarzenie(zdarzenie);
+            }
+        }
     }
 }

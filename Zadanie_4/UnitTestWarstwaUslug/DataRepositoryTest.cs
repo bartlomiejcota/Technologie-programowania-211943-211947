@@ -13,6 +13,7 @@ namespace UnitTestKasyno
         public void TestInitialize()
         {
             DataRepository.DataContext = new DataBaseDataContext();
+            DataRepository.WypelnijDanymi(10, 10, 10, 10);
         }
 
         // Create test

@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataRepository.cs" />
-    <Compile Include="KlasaDoTestow.cs" />
     <Compile Include="DataBase.cs">
       <DependentUpon>DataBase.dbml</DependentUpon>
     </Compile>
