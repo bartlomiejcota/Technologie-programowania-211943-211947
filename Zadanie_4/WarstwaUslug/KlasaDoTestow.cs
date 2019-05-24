@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace WarstwaUslug
 {
-    class Class1
+    class KlasaDoTestow
     {
         static void Main()
         {
@@ -12,7 +10,7 @@ namespace WarstwaUslug
             {
                 Gracz gracz1 = new Gracz()
                 {
-                    IdGracza = 0,
+                    IdGracza = 2,
                     Imie = "Jan",
                     Nazwisko = "Kowalski",
                     DataUrodzin = new DateTime(1908, 1, 2)
@@ -22,7 +20,7 @@ namespace WarstwaUslug
                
                 Gracz gracz2 = new Gracz()
                 {
-                    IdGracza = 1,
+                    IdGracza = 3,
                     Imie = "Karol",
                     Nazwisko = "Nowak",
                     DataUrodzin = new DateTime(1908, 1, 2)

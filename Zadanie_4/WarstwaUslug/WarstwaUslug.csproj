@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataRepository.cs" />
     <Compile Include="KlasaDoTestow.cs" />
     <Compile Include="DataBase.cs">
       <DependentUpon>DataBase.dbml</DependentUpon>
@@ -73,7 +74,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBase.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="DataBase.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
