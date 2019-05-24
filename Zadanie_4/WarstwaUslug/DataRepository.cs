@@ -41,7 +41,7 @@ namespace WarstwaUslug
             }
         }
 
-        public static void AddRozegranaGra(RozegranaGra rozegranaGra)
+        public static void CreateRozegranaGra(RozegranaGra rozegranaGra)
         {
             dataBaseDataContext.RozegranaGra.InsertOnSubmit(rozegranaGra);
             try
@@ -54,7 +54,7 @@ namespace WarstwaUslug
             }
         }
 
-        public static void AddZdarzenie(Zdarzenie zdarzenie)
+        public static void CreateZdarzenie(Zdarzenie zdarzenie)
         {
             dataBaseDataContext.Zdarzenie.InsertOnSubmit(zdarzenie);
             try
@@ -131,10 +131,10 @@ namespace WarstwaUslug
             }
         }
 
-        public static void DeleteZdarzenie(int uczestnikGry, int ukonczonaGra)
+        public static void DeleteZdarzenie(int idZdarzenia)
         {
             Zdarzenie zdarzenie = (from zdarzenia in dataBaseDataContext.Zdarzenie
-                                   where zdarzenia.UczestnikGry == uczestnikGry && zdarzenia.UkonczonaGra == ukonczonaGra
+                                   where zdarzenia.IdZdarzenia == idZdarzenia
                                    select zdarzenia).First();
 
             if (zdarzenie != null)
@@ -213,10 +213,10 @@ namespace WarstwaUslug
             return rozegranaGra;
         }
 
-        public static Zdarzenie GetZdarzenie(int uczestnikGry, int ukonczonaGra)
+        public static Zdarzenie ReadZdarzenie(int idZdarzenia)
         {
             Zdarzenie zdarzenie = (from zdarzenia in dataBaseDataContext.Zdarzenie
-                                   where zdarzenia.UczestnikGry == uczestnikGry && zdarzenia.UkonczonaGra == ukonczonaGra
+                                   where zdarzenia.IdZdarzenia == idZdarzenia 
                                    select zdarzenia).First();
 
             return zdarzenie;
@@ -227,7 +227,6 @@ namespace WarstwaUslug
         {
             Gra updateGra = dataBaseDataContext.Gra.Single(p => p.IdGry == gra.IdGry);
 
-            updateGra.IdGry = gra.IdGry;
             updateGra.NazwaGry = gra.NazwaGry;
             updateGra.InformacjeOGrze = gra.InformacjeOGrze;
 
@@ -245,7 +244,6 @@ namespace WarstwaUslug
         {
             Gracz updateGracz = dataBaseDataContext.Gracz.Single(p => p.IdGracza == gracz.IdGracza);
 
-            updateGracz.IdGracza = gracz.IdGracza;
             updateGracz.Imie = gracz.Imie;
             updateGracz.Nazwisko = gracz.Nazwisko;
             updateGracz.DataUrodzin = gracz.DataUrodzin;
@@ -264,7 +262,6 @@ namespace WarstwaUslug
         {
             RozegranaGra updateRozegranaGra = dataBaseDataContext.RozegranaGra.Single(p => p.IdRozegranejGry == rozegranaGra.IdRozegranejGry);
 
-            updateRozegranaGra.IdRozegranejGry = rozegranaGra.IdRozegranejGry;
             updateRozegranaGra.Gra = rozegranaGra.Gra;
             updateRozegranaGra.CzasRozpoczeciaGry = rozegranaGra.CzasRozpoczeciaGry;
             updateRozegranaGra.CzasTrwaniaGry = rozegranaGra.CzasTrwaniaGry;
@@ -283,12 +280,10 @@ namespace WarstwaUslug
 
         public static void UpdateZdarzenie(Zdarzenie zdarzenie)
         {
-            Zdarzenie updateZdarzenie = dataBaseDataContext.Zdarzenie.Single(p => p.UczestnikGry == zdarzenie.UczestnikGry && p.UkonczonaGra == zdarzenie.UkonczonaGra);
+            Zdarzenie updateZdarzenie = dataBaseDataContext.Zdarzenie.Single(p => p.IdZdarzenia == zdarzenie.IdZdarzenia);
 
             updateZdarzenie.UczestnikGry = zdarzenie.UczestnikGry;
             updateZdarzenie.UkonczonaGra = zdarzenie.UkonczonaGra;
-            updateZdarzenie.CzasRozpoczeciaGry = zdarzenie.CzasRozpoczeciaGry;
-            updateZdarzenie.CzasTrwaniaGry = zdarzenie.CzasTrwaniaGry;
             updateZdarzenie.Wygrana = zdarzenie.Wygrana;
 
             try

@@ -6,6 +6,7 @@
       <Column Name="NazwaGry" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="InformacjeOGrze" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Gra_RozegranaGra" Member="RozegranaGra" ThisKey="IdGry" OtherKey="Gra" Type="RozegranaGra" />
+      <Association Name="Gra_Zdarzenie" Member="Zdarzenie" ThisKey="IdGry" OtherKey="UkonczonaGra" Type="Zdarzenie" />
     </Type>
   </Table>
   <Table Name="dbo.Gracz" Member="Gracz">
@@ -17,17 +18,6 @@
       <Association Name="Gracz_Zdarzenie" Member="Zdarzenie" ThisKey="IdGracza" OtherKey="UczestnikGry" Type="Zdarzenie" />
     </Type>
   </Table>
-  <Table Name="dbo.Zdarzenie" Member="Zdarzenie">
-    <Type Name="Zdarzenie">
-      <Column Name="UczestnikGry" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UkonczonaGra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CzasRozpoczeciaGry" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="CzasTrwaniaGry" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
-      <Column Name="Wygrana" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="Gracz_Zdarzenie" Member="Gracz" ThisKey="UczestnikGry" OtherKey="IdGracza" Type="Gracz" IsForeignKey="true" />
-      <Association Name="RozegranaGra_Zdarzenie" Member="RozegranaGra" ThisKey="UkonczonaGra" OtherKey="IdRozegranejGry" Type="RozegranaGra" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RozegranaGra" Member="RozegranaGra">
     <Type Name="RozegranaGra">
       <Column Name="IdRozegranejGry" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -36,8 +26,17 @@
       <Column Name="CzasTrwaniaGry" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
       <Column Name="OplataWejsciowa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="MinimalnyDepozyt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="RozegranaGra_Zdarzenie" Member="Zdarzenie" ThisKey="IdRozegranejGry" OtherKey="UkonczonaGra" Type="Zdarzenie" />
       <Association Name="Gra_RozegranaGra" Member="Gra1" ThisKey="Gra" OtherKey="IdGry" Type="Gra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Zdarzenie" Member="Zdarzenie">
+    <Type Name="Zdarzenie">
+      <Column Name="IdZdarzenia" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UczestnikGry" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UkonczonaGra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Wygrana" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Gracz_Zdarzenie" Member="Gracz" ThisKey="UczestnikGry" OtherKey="IdGracza" Type="Gracz" IsForeignKey="true" />
+      <Association Name="Gra_Zdarzenie" Member="Gra" ThisKey="UkonczonaGra" OtherKey="IdGry" Type="Gra" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
