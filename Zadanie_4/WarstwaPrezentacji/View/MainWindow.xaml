@@ -1,0 +1,77 @@
+﻿<Window x:Class="WarstwaPrezentacji.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ViewModel="clr-namespace:WarstwaPrezentacji.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1020">
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <GroupBox Header="Gra:" HorizontalAlignment="Left" Height="203" Margin="12,8,0,0" VerticalAlignment="Top" Width="248"/>
+        <TextBlock Text="Id gry" HorizontalAlignment="Left" Margin="24,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Nazwa gry" HorizontalAlignment="Left" Margin="24,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Informacje o grze" HorizontalAlignment="Left" Margin="24,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding NewIdGry}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="131,30,0,0"/>
+        <TextBox Text="{Binding NewNazwaGry}" HorizontalAlignment="Left" Height="23" Margin="131,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding NewInformacjeOGrze}" HorizontalAlignment="Left" Height="23" Margin="131,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <ListBox ItemsSource="{Binding Gry}" SelectedItem="{Binding BiezacaGra}" HorizontalAlignment="Left" Height="170" Margin="10,240,0,0" VerticalAlignment="Top" Width="250">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding IdGry}"/>
+                        <Label Content="{Binding NazwaGry}"/>
+                        <Label Content="{Binding InformacjeOGrze}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <GroupBox Header="Gracz:" HorizontalAlignment="Left" Height="203" Margin="259,8,0,0" VerticalAlignment="Top" Width="248"/>
+        <TextBlock Text="Id gracz" HorizontalAlignment="Left" Margin="271,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Imie" HorizontalAlignment="Left" Margin="271,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Nazwisko" HorizontalAlignment="Left" Margin="271,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Data urodzin" HorizontalAlignment="Left" Margin="271,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding IdGraczaTextBox}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="378,30,0,0"/>
+        <TextBox Text="{Binding ImieTextBox}" HorizontalAlignment="Left" Height="23" Margin="378,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding NazwiskoTextBox}" HorizontalAlignment="Left" Height="23" Margin="378,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding DataUrodzinTextBox}" HorizontalAlignment="Left" Height="23" Margin="378,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <GroupBox Header="Rozegrana gra:" HorizontalAlignment="Left" Height="203" Margin="507,8,0,0" VerticalAlignment="Top" Width="248"/>
+        <TextBlock Text="Id rozegranej gry  " HorizontalAlignment="Left" Margin="519,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Gra" HorizontalAlignment="Left" Margin="519,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Czas rozpoczęcia gry" HorizontalAlignment="Left" Margin="519,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Czas trwania gry" HorizontalAlignment="Left" Margin="519,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Opłata wejściowa" HorizontalAlignment="Left" Margin="519,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Minimalny depozyt" HorizontalAlignment="Left" Margin="519,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding IdRozegranejGryTextBox}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="626,31,0,0"/>
+        <TextBox Text="{Binding GraTextBox}" HorizontalAlignment="Left" Height="23" Margin="626,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding CzasRozpoczeciaGryTextBox}" HorizontalAlignment="Left" Height="23" Margin="626,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding CzasTrwaniaGryTextBox}" HorizontalAlignment="Left" Height="23" Margin="626,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding OplataWejsciowaTextBox}" HorizontalAlignment="Left" Height="23" Margin="626,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding MinimalnyDepozytTextBox}" HorizontalAlignment="Left" Height="23" Margin="626,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <GroupBox Header="Zdarzenie:" HorizontalAlignment="Left" Height="203" Margin="756,8,0,0" VerticalAlignment="Top" Width="248"/>
+        <TextBlock Text="Id zdarzenia" HorizontalAlignment="Left" Margin="768,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Uczestnik gry" HorizontalAlignment="Left" Margin="768,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Ukończona gra" HorizontalAlignment="Left" Margin="768,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Wygrana" HorizontalAlignment="Left" Margin="768,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding IdZdarzeniaTextBox}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="875,31,0,0"/>
+        <TextBox Text="{Binding UczestnikGryTextBox}" HorizontalAlignment="Left" Height="23" Margin="875,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding UkonczonaGraTextBox}" HorizontalAlignment="Left" Height="23" Margin="875,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding WygranaTextBox}" HorizontalAlignment="Left" Height="23" Margin="875,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Create Gra" Command="{Binding CreateGraCommand}" HorizontalAlignment="Left" Margin="12,216,0,0" VerticalAlignment="Top" Width="82"/>
+        <Button Content="Update Gra" Command="{Binding UpdateGraCommand}" HorizontalAlignment="Left" Margin="94,216,0,0" VerticalAlignment="Top" Width="82"/>
+        <Button Content="Delete Gra" Command="{Binding DeleteGraCommand}" HorizontalAlignment="Left" Margin="176,216,0,0" VerticalAlignment="Top" Width="82"/>
+
+
+
+        <Button Content="Pobierz dane" Command="{Binding GetDataCommand}" HorizontalAlignment="Left" Margin="360,318,0,0" VerticalAlignment="Top" Width="75"/>
+
+
+    </Grid>
+</Window>

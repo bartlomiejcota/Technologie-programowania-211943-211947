@@ -6,6 +6,9 @@ namespace WarstwaUslug
 {
     public class DataRepository // DataRepository - funkcjonalność CRUD
     {
+        static public void Main() { }
+
+
         private static DataBaseDataContext dataBaseDataContext = new DataBaseDataContext();
 
         public static DataBaseDataContext DataContext
@@ -22,7 +25,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -35,7 +40,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -48,7 +55,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -61,7 +70,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -83,7 +94,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -104,7 +117,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -125,7 +140,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -146,7 +163,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -234,7 +253,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -252,7 +273,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -272,7 +295,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
@@ -290,7 +315,9 @@ namespace WarstwaUslug
             {
                 dataBaseDataContext.SubmitChanges();
             }
+#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
+#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
 
             }
