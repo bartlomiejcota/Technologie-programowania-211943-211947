@@ -6,11 +6,8 @@ namespace WarstwaUslug
 {
     public class DataRepository // DataRepository - funkcjonalność CRUD
     {
-        static public void Main() { }
-
-
         private static DataBaseDataContext dataBaseDataContext = new DataBaseDataContext();
-
+        
         public static DataBaseDataContext DataContext
         {
             get => dataBaseDataContext;
@@ -20,6 +17,7 @@ namespace WarstwaUslug
         // Add
         public static void CreateGracz(Gracz gracz)
         {
+            WypelnijDanymi(10, 10, 10, 10);
             dataBaseDataContext.Gracz.InsertOnSubmit(gracz);
             try
             {
@@ -327,7 +325,12 @@ namespace WarstwaUslug
         public static void WypelnijDanymi(int iloscGraczy, int iloscGier, int iloscRozegranychGier, int iloscZdarzen)
         {
             // Dodawanie graczy
-            int iloscGraczyPrzed = DataRepository.ReadAllGracz().Last().IdGracza;
+            int iloscGraczyPrzed = 0;
+            if (DataRepository.ReadAllGracz().Count() != 0)
+            {
+                iloscGraczyPrzed = DataRepository.ReadAllGracz().Last().IdGracza;
+            }
+         
             for (int i = iloscGraczyPrzed + 1; i < iloscGraczyPrzed + 1 + iloscGraczy; i++)
             {
                 Gracz gracz = new Gracz()
@@ -342,7 +345,12 @@ namespace WarstwaUslug
             }
 
             // Dodawanie gier
-            int iloscGierPzed = DataRepository.ReadAllGra().Last().IdGry;
+            int iloscGierPzed = 0;
+            if (DataRepository.ReadAllGra().Count() != 0)
+            {
+                iloscGierPzed = DataRepository.ReadAllGra().Last().IdGry;
+            }
+
             for (int i = iloscGierPzed + 1; i < iloscGierPzed + 1 + iloscGier; i++)
             {
                 Gra gra = new Gra()
@@ -356,7 +364,12 @@ namespace WarstwaUslug
             }
 
             // Dodawanie rozegranych gier
-            int iloscRozegranychGierPrzed = DataRepository.ReadAllRozegranaGra().Last().IdRozegranejGry;
+            int iloscRozegranychGierPrzed = 0;
+            if (DataRepository.ReadAllRozegranaGra().Count() != 0)
+            {
+                iloscRozegranychGierPrzed = DataRepository.ReadAllRozegranaGra().Last().IdRozegranejGry;
+            }
+
             for (int i = iloscRozegranychGierPrzed + 1; i < iloscRozegranychGierPrzed + 1 + iloscRozegranychGier; i++)
             {
                 RozegranaGra rozegranaGra = new RozegranaGra()
@@ -373,7 +386,12 @@ namespace WarstwaUslug
             }
 
             // Dodawanie Zdarzeń
-            int iloscZdarzenPrzed = DataRepository.ReadAllZdarzenie().Last().IdZdarzenia;
+            int iloscZdarzenPrzed = 0;
+            if (DataRepository.ReadAllZdarzenie().Count() != 0)
+            {
+                iloscZdarzenPrzed = DataRepository.ReadAllZdarzenie().Last().IdZdarzenia;
+            }
+
             for (int i = iloscZdarzenPrzed + 1; i < iloscZdarzenPrzed + 1 + iloscZdarzen; i++)
             {
                 Zdarzenie zdarzenie = new Zdarzenie()
@@ -387,5 +405,6 @@ namespace WarstwaUslug
                 DataRepository.CreateZdarzenie(zdarzenie);
             }
         }
+        static public void Main() { }
     }
 }

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WarstwaUslug;
 
 namespace WarstwaPrezentacji.Model
 {
     public class DataLayer
     {
+        // Gra
         public IEnumerable<Gra> gryData
         {
             get
@@ -16,14 +13,35 @@ namespace WarstwaPrezentacji.Model
                 IEnumerable<Gra> gry = DataRepository.ReadAllGra();
                 return gry;
             }
-        }   
+        }
 
-        public Gra graData
+        // Gracz
+        public IEnumerable<Gracz> graczeData
         {
             get
             {
-                Gra gra = DataRepository.ReadGra(0);
-                return gra;
+                IEnumerable<Gracz> gracze = DataRepository.ReadAllGracz();
+                return gracze;
+            }
+        }
+
+        // Rozegrana gra
+        public IEnumerable<RozegranaGra> rozegraneGryData
+        {
+            get
+            {
+                IEnumerable<RozegranaGra> rozegraneGry = DataRepository.ReadAllRozegranaGra();
+                return rozegraneGry;
+            }
+        }
+
+        // Zdarzenie
+        public IEnumerable<Zdarzenie> zdarzeniaData
+        {
+            get
+            {
+                IEnumerable<Zdarzenie> zdarzenia = DataRepository.ReadAllZdarzenie();
+                return zdarzenia;
             }
         }
     }

@@ -30,18 +30,18 @@ namespace WarstwaUslug
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertGra(Gra instance);
-    partial void UpdateGra(Gra instance);
-    partial void DeleteGra(Gra instance);
-    partial void InsertGracz(Gracz instance);
-    partial void UpdateGracz(Gracz instance);
-    partial void DeleteGracz(Gracz instance);
-    partial void InsertRozegranaGra(RozegranaGra instance);
-    partial void UpdateRozegranaGra(RozegranaGra instance);
-    partial void DeleteRozegranaGra(RozegranaGra instance);
     partial void InsertZdarzenie(Zdarzenie instance);
     partial void UpdateZdarzenie(Zdarzenie instance);
     partial void DeleteZdarzenie(Zdarzenie instance);
+    partial void InsertRozegranaGra(RozegranaGra instance);
+    partial void UpdateRozegranaGra(RozegranaGra instance);
+    partial void DeleteRozegranaGra(RozegranaGra instance);
+    partial void InsertGracz(Gracz instance);
+    partial void UpdateGracz(Gracz instance);
+    partial void DeleteGracz(Gracz instance);
+    partial void InsertGra(Gra instance);
+    partial void UpdateGra(Gra instance);
+    partial void DeleteGra(Gra instance);
     #endregion
 		
 		public DataBaseDataContext() : 
@@ -74,19 +74,11 @@ namespace WarstwaUslug
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Gra> Gra
+		public System.Data.Linq.Table<Zdarzenie> Zdarzenie
 		{
 			get
 			{
-				return this.GetTable<Gra>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Gracz> Gracz
-		{
-			get
-			{
-				return this.GetTable<Gracz>();
+				return this.GetTable<Zdarzenie>();
 			}
 		}
 		
@@ -98,124 +90,411 @@ namespace WarstwaUslug
 			}
 		}
 		
-		public System.Data.Linq.Table<Zdarzenie> Zdarzenie
+		public System.Data.Linq.Table<Gracz> Gracz
 		{
 			get
 			{
-				return this.GetTable<Zdarzenie>();
+				return this.GetTable<Gracz>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Gra> Gra
+		{
+			get
+			{
+				return this.GetTable<Gra>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Gra")]
-	public partial class Gra : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Zdarzenie")]
+	public partial class Zdarzenie : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IdGry;
+		private int _IdZdarzenia;
 		
-		private string _NazwaGry;
+		private int _UczestnikGry;
 		
-		private string _InformacjeOGrze;
+		private int _UkonczonaGra;
 		
-		private EntitySet<RozegranaGra> _RozegranaGra;
+		private double _Wygrana;
 		
-		private EntitySet<Zdarzenie> _Zdarzenie;
+		private EntityRef<RozegranaGra> _RozegranaGra;
+		
+		private EntityRef<Gracz> _Gracz;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdGryChanging(int value);
-    partial void OnIdGryChanged();
-    partial void OnNazwaGryChanging(string value);
-    partial void OnNazwaGryChanged();
-    partial void OnInformacjeOGrzeChanging(string value);
-    partial void OnInformacjeOGrzeChanged();
+    partial void OnIdZdarzeniaChanging(int value);
+    partial void OnIdZdarzeniaChanged();
+    partial void OnUczestnikGryChanging(int value);
+    partial void OnUczestnikGryChanged();
+    partial void OnUkonczonaGraChanging(int value);
+    partial void OnUkonczonaGraChanged();
+    partial void OnWygranaChanging(double value);
+    partial void OnWygranaChanged();
     #endregion
 		
-		public Gra()
+		public Zdarzenie()
 		{
-			this._RozegranaGra = new EntitySet<RozegranaGra>(new Action<RozegranaGra>(this.attach_RozegranaGra), new Action<RozegranaGra>(this.detach_RozegranaGra));
-			this._Zdarzenie = new EntitySet<Zdarzenie>(new Action<Zdarzenie>(this.attach_Zdarzenie), new Action<Zdarzenie>(this.detach_Zdarzenie));
+			this._RozegranaGra = default(EntityRef<RozegranaGra>);
+			this._Gracz = default(EntityRef<Gracz>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGry", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int IdGry
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdZdarzenia", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int IdZdarzenia
 		{
 			get
 			{
-				return this._IdGry;
+				return this._IdZdarzenia;
 			}
 			set
 			{
-				if ((this._IdGry != value))
+				if ((this._IdZdarzenia != value))
 				{
-					this.OnIdGryChanging(value);
+					this.OnIdZdarzeniaChanging(value);
 					this.SendPropertyChanging();
-					this._IdGry = value;
-					this.SendPropertyChanged("IdGry");
-					this.OnIdGryChanged();
+					this._IdZdarzenia = value;
+					this.SendPropertyChanged("IdZdarzenia");
+					this.OnIdZdarzeniaChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaGry", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string NazwaGry
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UczestnikGry", DbType="Int NOT NULL")]
+		public int UczestnikGry
 		{
 			get
 			{
-				return this._NazwaGry;
+				return this._UczestnikGry;
 			}
 			set
 			{
-				if ((this._NazwaGry != value))
+				if ((this._UczestnikGry != value))
 				{
-					this.OnNazwaGryChanging(value);
+					if (this._Gracz.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUczestnikGryChanging(value);
 					this.SendPropertyChanging();
-					this._NazwaGry = value;
-					this.SendPropertyChanged("NazwaGry");
-					this.OnNazwaGryChanged();
+					this._UczestnikGry = value;
+					this.SendPropertyChanged("UczestnikGry");
+					this.OnUczestnikGryChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InformacjeOGrze", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string InformacjeOGrze
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UkonczonaGra", DbType="Int NOT NULL")]
+		public int UkonczonaGra
 		{
 			get
 			{
-				return this._InformacjeOGrze;
+				return this._UkonczonaGra;
 			}
 			set
 			{
-				if ((this._InformacjeOGrze != value))
+				if ((this._UkonczonaGra != value))
 				{
-					this.OnInformacjeOGrzeChanging(value);
+					if (this._RozegranaGra.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUkonczonaGraChanging(value);
 					this.SendPropertyChanging();
-					this._InformacjeOGrze = value;
-					this.SendPropertyChanged("InformacjeOGrze");
-					this.OnInformacjeOGrzeChanged();
+					this._UkonczonaGra = value;
+					this.SendPropertyChanged("UkonczonaGra");
+					this.OnUkonczonaGraChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gra_RozegranaGra", Storage="_RozegranaGra", ThisKey="IdGry", OtherKey="Gra")]
-		public EntitySet<RozegranaGra> RozegranaGra
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Wygrana", DbType="Float NOT NULL")]
+		public double Wygrana
 		{
 			get
 			{
-				return this._RozegranaGra;
+				return this._Wygrana;
 			}
 			set
 			{
-				this._RozegranaGra.Assign(value);
+				if ((this._Wygrana != value))
+				{
+					this.OnWygranaChanging(value);
+					this.SendPropertyChanging();
+					this._Wygrana = value;
+					this.SendPropertyChanged("Wygrana");
+					this.OnWygranaChanged();
+				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gra_Zdarzenie", Storage="_Zdarzenie", ThisKey="IdGry", OtherKey="UkonczonaGra")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RozegranaGra_Zdarzenie", Storage="_RozegranaGra", ThisKey="UkonczonaGra", OtherKey="IdRozegranejGry", IsForeignKey=true)]
+		public RozegranaGra RozegranaGra
+		{
+			get
+			{
+				return this._RozegranaGra.Entity;
+			}
+			set
+			{
+				RozegranaGra previousValue = this._RozegranaGra.Entity;
+				if (((previousValue != value) 
+							|| (this._RozegranaGra.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RozegranaGra.Entity = null;
+						previousValue.Zdarzenie.Remove(this);
+					}
+					this._RozegranaGra.Entity = value;
+					if ((value != null))
+					{
+						value.Zdarzenie.Add(this);
+						this._UkonczonaGra = value.IdRozegranejGry;
+					}
+					else
+					{
+						this._UkonczonaGra = default(int);
+					}
+					this.SendPropertyChanged("RozegranaGra");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gracz_Zdarzenie", Storage="_Gracz", ThisKey="UczestnikGry", OtherKey="IdGracza", IsForeignKey=true)]
+		public Gracz Gracz
+		{
+			get
+			{
+				return this._Gracz.Entity;
+			}
+			set
+			{
+				Gracz previousValue = this._Gracz.Entity;
+				if (((previousValue != value) 
+							|| (this._Gracz.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Gracz.Entity = null;
+						previousValue.Zdarzenie.Remove(this);
+					}
+					this._Gracz.Entity = value;
+					if ((value != null))
+					{
+						value.Zdarzenie.Add(this);
+						this._UczestnikGry = value.IdGracza;
+					}
+					else
+					{
+						this._UczestnikGry = default(int);
+					}
+					this.SendPropertyChanged("Gracz");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RozegranaGra")]
+	public partial class RozegranaGra : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IdRozegranejGry;
+		
+		private int _Gra;
+		
+		private System.DateTime _CzasRozpoczeciaGry;
+		
+		private System.TimeSpan _CzasTrwaniaGry;
+		
+		private double _OplataWejsciowa;
+		
+		private double _MinimalnyDepozyt;
+		
+		private EntitySet<Zdarzenie> _Zdarzenie;
+		
+		private EntityRef<Gra> _Gra1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdRozegranejGryChanging(int value);
+    partial void OnIdRozegranejGryChanged();
+    partial void OnGraChanging(int value);
+    partial void OnGraChanged();
+    partial void OnCzasRozpoczeciaGryChanging(System.DateTime value);
+    partial void OnCzasRozpoczeciaGryChanged();
+    partial void OnCzasTrwaniaGryChanging(System.TimeSpan value);
+    partial void OnCzasTrwaniaGryChanged();
+    partial void OnOplataWejsciowaChanging(double value);
+    partial void OnOplataWejsciowaChanged();
+    partial void OnMinimalnyDepozytChanging(double value);
+    partial void OnMinimalnyDepozytChanged();
+    #endregion
+		
+		public RozegranaGra()
+		{
+			this._Zdarzenie = new EntitySet<Zdarzenie>(new Action<Zdarzenie>(this.attach_Zdarzenie), new Action<Zdarzenie>(this.detach_Zdarzenie));
+			this._Gra1 = default(EntityRef<Gra>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRozegranejGry", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int IdRozegranejGry
+		{
+			get
+			{
+				return this._IdRozegranejGry;
+			}
+			set
+			{
+				if ((this._IdRozegranejGry != value))
+				{
+					this.OnIdRozegranejGryChanging(value);
+					this.SendPropertyChanging();
+					this._IdRozegranejGry = value;
+					this.SendPropertyChanged("IdRozegranejGry");
+					this.OnIdRozegranejGryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gra", DbType="Int NOT NULL")]
+		public int Gra
+		{
+			get
+			{
+				return this._Gra;
+			}
+			set
+			{
+				if ((this._Gra != value))
+				{
+					if (this._Gra1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGraChanging(value);
+					this.SendPropertyChanging();
+					this._Gra = value;
+					this.SendPropertyChanged("Gra");
+					this.OnGraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CzasRozpoczeciaGry", DbType="DateTime NOT NULL")]
+		public System.DateTime CzasRozpoczeciaGry
+		{
+			get
+			{
+				return this._CzasRozpoczeciaGry;
+			}
+			set
+			{
+				if ((this._CzasRozpoczeciaGry != value))
+				{
+					this.OnCzasRozpoczeciaGryChanging(value);
+					this.SendPropertyChanging();
+					this._CzasRozpoczeciaGry = value;
+					this.SendPropertyChanged("CzasRozpoczeciaGry");
+					this.OnCzasRozpoczeciaGryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CzasTrwaniaGry", DbType="Time NOT NULL")]
+		public System.TimeSpan CzasTrwaniaGry
+		{
+			get
+			{
+				return this._CzasTrwaniaGry;
+			}
+			set
+			{
+				if ((this._CzasTrwaniaGry != value))
+				{
+					this.OnCzasTrwaniaGryChanging(value);
+					this.SendPropertyChanging();
+					this._CzasTrwaniaGry = value;
+					this.SendPropertyChanged("CzasTrwaniaGry");
+					this.OnCzasTrwaniaGryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OplataWejsciowa", DbType="Float NOT NULL")]
+		public double OplataWejsciowa
+		{
+			get
+			{
+				return this._OplataWejsciowa;
+			}
+			set
+			{
+				if ((this._OplataWejsciowa != value))
+				{
+					this.OnOplataWejsciowaChanging(value);
+					this.SendPropertyChanging();
+					this._OplataWejsciowa = value;
+					this.SendPropertyChanged("OplataWejsciowa");
+					this.OnOplataWejsciowaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinimalnyDepozyt", DbType="Float NOT NULL")]
+		public double MinimalnyDepozyt
+		{
+			get
+			{
+				return this._MinimalnyDepozyt;
+			}
+			set
+			{
+				if ((this._MinimalnyDepozyt != value))
+				{
+					this.OnMinimalnyDepozytChanging(value);
+					this.SendPropertyChanging();
+					this._MinimalnyDepozyt = value;
+					this.SendPropertyChanged("MinimalnyDepozyt");
+					this.OnMinimalnyDepozytChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RozegranaGra_Zdarzenie", Storage="_Zdarzenie", ThisKey="IdRozegranejGry", OtherKey="UkonczonaGra")]
 		public EntitySet<Zdarzenie> Zdarzenie
 		{
 			get
@@ -225,6 +504,40 @@ namespace WarstwaUslug
 			set
 			{
 				this._Zdarzenie.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gra_RozegranaGra", Storage="_Gra1", ThisKey="Gra", OtherKey="IdGry", IsForeignKey=true)]
+		public Gra Gra1
+		{
+			get
+			{
+				return this._Gra1.Entity;
+			}
+			set
+			{
+				Gra previousValue = this._Gra1.Entity;
+				if (((previousValue != value) 
+							|| (this._Gra1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Gra1.Entity = null;
+						previousValue.RozegranaGra.Remove(this);
+					}
+					this._Gra1.Entity = value;
+					if ((value != null))
+					{
+						value.RozegranaGra.Add(this);
+						this._Gra = value.IdGry;
+					}
+					else
+					{
+						this._Gra = default(int);
+					}
+					this.SendPropertyChanged("Gra1");
+				}
 			}
 		}
 		
@@ -248,28 +561,16 @@ namespace WarstwaUslug
 			}
 		}
 		
-		private void attach_RozegranaGra(RozegranaGra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Gra1 = this;
-		}
-		
-		private void detach_RozegranaGra(RozegranaGra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Gra1 = null;
-		}
-		
 		private void attach_Zdarzenie(Zdarzenie entity)
 		{
 			this.SendPropertyChanging();
-			entity.Gra = this;
+			entity.RozegranaGra = this;
 		}
 		
 		private void detach_Zdarzenie(Zdarzenie entity)
 		{
 			this.SendPropertyChanging();
-			entity.Gra = null;
+			entity.RozegranaGra = null;
 		}
 	}
 	
@@ -435,205 +736,108 @@ namespace WarstwaUslug
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RozegranaGra")]
-	public partial class RozegranaGra : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Gra")]
+	public partial class Gra : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IdRozegranejGry;
+		private int _IdGry;
 		
-		private int _Gra;
+		private string _NazwaGry;
 		
-		private System.DateTime _CzasRozpoczeciaGry;
+		private string _InformacjeOGrze;
 		
-		private System.TimeSpan _CzasTrwaniaGry;
-		
-		private double _OplataWejsciowa;
-		
-		private double _MinimalnyDepozyt;
-		
-		private EntityRef<Gra> _Gra1;
+		private EntitySet<RozegranaGra> _RozegranaGra;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdRozegranejGryChanging(int value);
-    partial void OnIdRozegranejGryChanged();
-    partial void OnGraChanging(int value);
-    partial void OnGraChanged();
-    partial void OnCzasRozpoczeciaGryChanging(System.DateTime value);
-    partial void OnCzasRozpoczeciaGryChanged();
-    partial void OnCzasTrwaniaGryChanging(System.TimeSpan value);
-    partial void OnCzasTrwaniaGryChanged();
-    partial void OnOplataWejsciowaChanging(double value);
-    partial void OnOplataWejsciowaChanged();
-    partial void OnMinimalnyDepozytChanging(double value);
-    partial void OnMinimalnyDepozytChanged();
+    partial void OnIdGryChanging(int value);
+    partial void OnIdGryChanged();
+    partial void OnNazwaGryChanging(string value);
+    partial void OnNazwaGryChanged();
+    partial void OnInformacjeOGrzeChanging(string value);
+    partial void OnInformacjeOGrzeChanged();
     #endregion
 		
-		public RozegranaGra()
+		public Gra()
 		{
-			this._Gra1 = default(EntityRef<Gra>);
+			this._RozegranaGra = new EntitySet<RozegranaGra>(new Action<RozegranaGra>(this.attach_RozegranaGra), new Action<RozegranaGra>(this.detach_RozegranaGra));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRozegranejGry", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int IdRozegranejGry
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGry", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int IdGry
 		{
 			get
 			{
-				return this._IdRozegranejGry;
+				return this._IdGry;
 			}
 			set
 			{
-				if ((this._IdRozegranejGry != value))
+				if ((this._IdGry != value))
 				{
-					this.OnIdRozegranejGryChanging(value);
+					this.OnIdGryChanging(value);
 					this.SendPropertyChanging();
-					this._IdRozegranejGry = value;
-					this.SendPropertyChanged("IdRozegranejGry");
-					this.OnIdRozegranejGryChanged();
+					this._IdGry = value;
+					this.SendPropertyChanged("IdGry");
+					this.OnIdGryChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gra", DbType="Int NOT NULL")]
-		public int Gra
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaGry", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string NazwaGry
 		{
 			get
 			{
-				return this._Gra;
+				return this._NazwaGry;
 			}
 			set
 			{
-				if ((this._Gra != value))
+				if ((this._NazwaGry != value))
 				{
-					if (this._Gra1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGraChanging(value);
+					this.OnNazwaGryChanging(value);
 					this.SendPropertyChanging();
-					this._Gra = value;
-					this.SendPropertyChanged("Gra");
-					this.OnGraChanged();
+					this._NazwaGry = value;
+					this.SendPropertyChanged("NazwaGry");
+					this.OnNazwaGryChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CzasRozpoczeciaGry", DbType="DateTime NOT NULL")]
-		public System.DateTime CzasRozpoczeciaGry
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InformacjeOGrze", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string InformacjeOGrze
 		{
 			get
 			{
-				return this._CzasRozpoczeciaGry;
+				return this._InformacjeOGrze;
 			}
 			set
 			{
-				if ((this._CzasRozpoczeciaGry != value))
+				if ((this._InformacjeOGrze != value))
 				{
-					this.OnCzasRozpoczeciaGryChanging(value);
+					this.OnInformacjeOGrzeChanging(value);
 					this.SendPropertyChanging();
-					this._CzasRozpoczeciaGry = value;
-					this.SendPropertyChanged("CzasRozpoczeciaGry");
-					this.OnCzasRozpoczeciaGryChanged();
+					this._InformacjeOGrze = value;
+					this.SendPropertyChanged("InformacjeOGrze");
+					this.OnInformacjeOGrzeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CzasTrwaniaGry", DbType="Time NOT NULL")]
-		public System.TimeSpan CzasTrwaniaGry
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gra_RozegranaGra", Storage="_RozegranaGra", ThisKey="IdGry", OtherKey="Gra")]
+		public EntitySet<RozegranaGra> RozegranaGra
 		{
 			get
 			{
-				return this._CzasTrwaniaGry;
+				return this._RozegranaGra;
 			}
 			set
 			{
-				if ((this._CzasTrwaniaGry != value))
-				{
-					this.OnCzasTrwaniaGryChanging(value);
-					this.SendPropertyChanging();
-					this._CzasTrwaniaGry = value;
-					this.SendPropertyChanged("CzasTrwaniaGry");
-					this.OnCzasTrwaniaGryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OplataWejsciowa", DbType="Float NOT NULL")]
-		public double OplataWejsciowa
-		{
-			get
-			{
-				return this._OplataWejsciowa;
-			}
-			set
-			{
-				if ((this._OplataWejsciowa != value))
-				{
-					this.OnOplataWejsciowaChanging(value);
-					this.SendPropertyChanging();
-					this._OplataWejsciowa = value;
-					this.SendPropertyChanged("OplataWejsciowa");
-					this.OnOplataWejsciowaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinimalnyDepozyt", DbType="Float NOT NULL")]
-		public double MinimalnyDepozyt
-		{
-			get
-			{
-				return this._MinimalnyDepozyt;
-			}
-			set
-			{
-				if ((this._MinimalnyDepozyt != value))
-				{
-					this.OnMinimalnyDepozytChanging(value);
-					this.SendPropertyChanging();
-					this._MinimalnyDepozyt = value;
-					this.SendPropertyChanged("MinimalnyDepozyt");
-					this.OnMinimalnyDepozytChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gra_RozegranaGra", Storage="_Gra1", ThisKey="Gra", OtherKey="IdGry", IsForeignKey=true)]
-		public Gra Gra1
-		{
-			get
-			{
-				return this._Gra1.Entity;
-			}
-			set
-			{
-				Gra previousValue = this._Gra1.Entity;
-				if (((previousValue != value) 
-							|| (this._Gra1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Gra1.Entity = null;
-						previousValue.RozegranaGra.Remove(this);
-					}
-					this._Gra1.Entity = value;
-					if ((value != null))
-					{
-						value.RozegranaGra.Add(this);
-						this._Gra = value.IdGry;
-					}
-					else
-					{
-						this._Gra = default(int);
-					}
-					this.SendPropertyChanged("Gra1");
-				}
+				this._RozegranaGra.Assign(value);
 			}
 		}
 		
@@ -656,221 +860,17 @@ namespace WarstwaUslug
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Zdarzenie")]
-	public partial class Zdarzenie : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IdZdarzenia;
-		
-		private int _UczestnikGry;
-		
-		private int _UkonczonaGra;
-		
-		private double _Wygrana;
-		
-		private EntityRef<Gracz> _Gracz;
-		
-		private EntityRef<Gra> _Gra;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdZdarzeniaChanging(int value);
-    partial void OnIdZdarzeniaChanged();
-    partial void OnUczestnikGryChanging(int value);
-    partial void OnUczestnikGryChanged();
-    partial void OnUkonczonaGraChanging(int value);
-    partial void OnUkonczonaGraChanged();
-    partial void OnWygranaChanging(double value);
-    partial void OnWygranaChanged();
-    #endregion
-		
-		public Zdarzenie()
+		private void attach_RozegranaGra(RozegranaGra entity)
 		{
-			this._Gracz = default(EntityRef<Gracz>);
-			this._Gra = default(EntityRef<Gra>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Gra1 = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdZdarzenia", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int IdZdarzenia
+		private void detach_RozegranaGra(RozegranaGra entity)
 		{
-			get
-			{
-				return this._IdZdarzenia;
-			}
-			set
-			{
-				if ((this._IdZdarzenia != value))
-				{
-					this.OnIdZdarzeniaChanging(value);
-					this.SendPropertyChanging();
-					this._IdZdarzenia = value;
-					this.SendPropertyChanged("IdZdarzenia");
-					this.OnIdZdarzeniaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UczestnikGry", DbType="Int NOT NULL")]
-		public int UczestnikGry
-		{
-			get
-			{
-				return this._UczestnikGry;
-			}
-			set
-			{
-				if ((this._UczestnikGry != value))
-				{
-					if (this._Gracz.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUczestnikGryChanging(value);
-					this.SendPropertyChanging();
-					this._UczestnikGry = value;
-					this.SendPropertyChanged("UczestnikGry");
-					this.OnUczestnikGryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UkonczonaGra", DbType="Int NOT NULL")]
-		public int UkonczonaGra
-		{
-			get
-			{
-				return this._UkonczonaGra;
-			}
-			set
-			{
-				if ((this._UkonczonaGra != value))
-				{
-					if (this._Gra.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUkonczonaGraChanging(value);
-					this.SendPropertyChanging();
-					this._UkonczonaGra = value;
-					this.SendPropertyChanged("UkonczonaGra");
-					this.OnUkonczonaGraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Wygrana", DbType="Float NOT NULL")]
-		public double Wygrana
-		{
-			get
-			{
-				return this._Wygrana;
-			}
-			set
-			{
-				if ((this._Wygrana != value))
-				{
-					this.OnWygranaChanging(value);
-					this.SendPropertyChanging();
-					this._Wygrana = value;
-					this.SendPropertyChanged("Wygrana");
-					this.OnWygranaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gracz_Zdarzenie", Storage="_Gracz", ThisKey="UczestnikGry", OtherKey="IdGracza", IsForeignKey=true)]
-		public Gracz Gracz
-		{
-			get
-			{
-				return this._Gracz.Entity;
-			}
-			set
-			{
-				Gracz previousValue = this._Gracz.Entity;
-				if (((previousValue != value) 
-							|| (this._Gracz.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Gracz.Entity = null;
-						previousValue.Zdarzenie.Remove(this);
-					}
-					this._Gracz.Entity = value;
-					if ((value != null))
-					{
-						value.Zdarzenie.Add(this);
-						this._UczestnikGry = value.IdGracza;
-					}
-					else
-					{
-						this._UczestnikGry = default(int);
-					}
-					this.SendPropertyChanged("Gracz");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gra_Zdarzenie", Storage="_Gra", ThisKey="UkonczonaGra", OtherKey="IdGry", IsForeignKey=true)]
-		public Gra Gra
-		{
-			get
-			{
-				return this._Gra.Entity;
-			}
-			set
-			{
-				Gra previousValue = this._Gra.Entity;
-				if (((previousValue != value) 
-							|| (this._Gra.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Gra.Entity = null;
-						previousValue.Zdarzenie.Remove(this);
-					}
-					this._Gra.Entity = value;
-					if ((value != null))
-					{
-						value.Zdarzenie.Add(this);
-						this._UkonczonaGra = value.IdGry;
-					}
-					else
-					{
-						this._UkonczonaGra = default(int);
-					}
-					this.SendPropertyChanged("Gra");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Gra1 = null;
 		}
 	}
 }

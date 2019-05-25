@@ -2,49 +2,49 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataBase">
   <DataContextMoniker Name="/DataBaseDataContext" />
   <nestedChildShapes>
-    <classShape Id="7375edf6-a842-4e65-8be7-cffa5b0a24a2" absoluteBounds="0.75, 3.125, 2, 1.3862939453124992">
-      <DataClassMoniker Name="/DataBaseDataContext/Gra" />
-      <nestedChildShapes>
-        <elementListCompartment Id="4b45058f-a0e4-4e77-9ce4-b2c6326809bc" absoluteBounds="0.765, 3.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="5a5aa451-3e93-4a35-ad16-0fabd8e75809" absoluteBounds="0.75, 0.75, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/DataBaseDataContext/Gracz" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9f1499ef-0746-4d81-8654-548cdb40313c" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="e1c330f2-9311-419f-9b6c-67f24b3df37c" absoluteBounds="3.75, 4, 2, 1.9631982421875005">
-      <DataClassMoniker Name="/DataBaseDataContext/RozegranaGra" />
-      <nestedChildShapes>
-        <elementListCompartment Id="01453295-2d03-4c60-acb8-df8d19984a36" absoluteBounds="3.765, 4.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="88f853f8-54ff-4825-9508-8c70a7c12175" absoluteBounds="3.875, 1.875, 2, 1.5785953776041666">
+    <classShape Id="54b070ee-4c3a-44a0-965f-42727c5be6c8" absoluteBounds="6.25, 1.125, 2, 1.5785953776041664">
       <DataClassMoniker Name="/DataBaseDataContext/Zdarzenie" />
       <nestedChildShapes>
-        <elementListCompartment Id="19e244fb-d7e7-425b-b466-fb88b3a6443d" absoluteBounds="3.89, 2.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="775f0e40-1ec0-4c48-95e5-d5f1ed02ec43" absoluteBounds="6.265, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 4.25564697265625); (3.75 : 4.25564697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DataBaseDataContext/Gra/Gra_RozegranaGra" />
+    <classShape Id="3dd75cab-9751-44e1-b394-73a67835d0e0" absoluteBounds="3.5, 0.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DataBaseDataContext/RozegranaGra" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a32774eb-19b2-4891-809d-8e588a4d9e66" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c1c43f73-88c8-4059-a57e-81077be359fb" absoluteBounds="3.5, 4.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataBaseDataContext/Gracz" />
+      <nestedChildShapes>
+        <elementListCompartment Id="91bbc3f3-7e53-496f-831c-3ab1bbd7119b" absoluteBounds="3.515, 4.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0b8e0800-aae1-4901-bb60-b072612108ea" absoluteBounds="0.75, 1.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DataBaseDataContext/Gra" />
+      <nestedChildShapes>
+        <elementListCompartment Id="39d735e4-078c-4aa4-a578-5de04cb18c0b" absoluteBounds="0.765, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 1.91429768880208); (6.25 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataBaseDataContext/RozegranaGra/RozegranaGra_Zdarzenie" />
       <nodes>
-        <classShapeMoniker Id="7375edf6-a842-4e65-8be7-cffa5b0a24a2" />
-        <classShapeMoniker Id="e1c330f2-9311-419f-9b6c-67f24b3df37c" />
+        <classShapeMoniker Id="3dd75cab-9751-44e1-b394-73a67835d0e0" />
+        <classShapeMoniker Id="54b070ee-4c3a-44a0-965f-42727c5be6c8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.10179768880208); (3.875 : 2.10179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.91429768880208); (7.25 : 4.91429768880208); (7.25 : 2.70359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataBaseDataContext/Gracz/Gracz_Zdarzenie" />
       <nodes>
-        <classShapeMoniker Id="5a5aa451-3e93-4a35-ad16-0fabd8e75809" />
-        <classShapeMoniker Id="88f853f8-54ff-4825-9508-8c70a7c12175" />
+        <classShapeMoniker Id="c1c43f73-88c8-4059-a57e-81077be359fb" />
+        <classShapeMoniker Id="54b070ee-4c3a-44a0-965f-42727c5be6c8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.28929768880208); (3.875 : 3.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DataBaseDataContext/Gra/Gra_Zdarzenie" />
+    <associationConnector edgePoints="[(2.75 : 1.94314697265625); (3.5 : 1.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataBaseDataContext/Gra/Gra_RozegranaGra" />
       <nodes>
-        <classShapeMoniker Id="7375edf6-a842-4e65-8be7-cffa5b0a24a2" />
-        <classShapeMoniker Id="88f853f8-54ff-4825-9508-8c70a7c12175" />
+        <classShapeMoniker Id="0b8e0800-aae1-4901-bb60-b072612108ea" />
+        <classShapeMoniker Id="3dd75cab-9751-44e1-b394-73a67835d0e0" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

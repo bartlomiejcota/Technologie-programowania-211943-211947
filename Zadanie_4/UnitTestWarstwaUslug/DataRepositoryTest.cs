@@ -184,25 +184,25 @@ namespace UnitTestKasyno
         [TestMethod]
         public void ReadGraTest()
         {
-            Gra gra = DataRepository.ReadGra(0);
+            Gra gra = DataRepository.ReadGra(DataRepository.ReadAllGra().Last().IdGry);
         }
 
         [TestMethod]
         public void ReadGraczTest()
         {
-            Gracz gracz = DataRepository.ReadGracz(0);
+            Gracz gracz = DataRepository.ReadGracz(DataRepository.ReadAllGracz().Last().IdGracza);
         }
 
         [TestMethod]
         public void ReadRozegranaGraTest()
         {
-            RozegranaGra rozegranaGra = DataRepository.ReadRozegranaGra(0);
+            RozegranaGra rozegranaGra = DataRepository.ReadRozegranaGra(DataRepository.ReadAllRozegranaGra().Last().IdRozegranejGry);
         }
 
         [TestMethod]
         public void ReadZdarzenieTest()
         {
-            Zdarzenie zdarzenie = DataRepository.ReadZdarzenie(0);
+            Zdarzenie zdarzenie = DataRepository.ReadZdarzenie(DataRepository.ReadAllZdarzenie().Last().IdZdarzenia);
         }
 
         // Update
