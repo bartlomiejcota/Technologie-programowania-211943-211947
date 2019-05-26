@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataBase" Class="DataBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DataBase.mdf;Integrated Security=True" SettingsObjectName="WarstwaDanych.Properties.Settings" SettingsPropertyName="DataBaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Gra" Member="Gra">
+    <Type Name="Gra">
+      <Column Name="IdGry" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NazwaGry" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InformacjeOGrze" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Gra_RozegranaGra" Member="RozegranaGra" ThisKey="IdGry" OtherKey="Gra" Type="RozegranaGra" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RozegranaGra" Member="RozegranaGra">
+    <Type Name="RozegranaGra">
+      <Column Name="IdRozegranejGry" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Gra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CzasRozpoczeciaGry" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CzasTrwaniaGry" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="OplataWejsciowa" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MinimalnyDepozyt" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="RozegranaGra_Zdarzenie" Member="Zdarzenie" ThisKey="IdRozegranejGry" OtherKey="UkonczonaGra" Type="Zdarzenie" />
+      <Association Name="Gra_RozegranaGra" Member="Gra1" ThisKey="Gra" OtherKey="IdGry" Type="Gra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gracz" Member="Gracz">
+    <Type Name="Gracz">
+      <Column Name="IdGracza" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Imie" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nazwisko" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DataUrodzin" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Gracz_Zdarzenie" Member="Zdarzenie" ThisKey="IdGracza" OtherKey="UczestnikGry" Type="Zdarzenie" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Zdarzenie" Member="Zdarzenie">
+    <Type Name="Zdarzenie">
+      <Column Name="IdZdarzenia" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UczestnikGry" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UkonczonaGra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Wygrana" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Gracz_Zdarzenie" Member="Gracz" ThisKey="UczestnikGry" OtherKey="IdGracza" Type="Gracz" IsForeignKey="true" />
+      <Association Name="RozegranaGra_Zdarzenie" Member="RozegranaGra" ThisKey="UkonczonaGra" OtherKey="IdRozegranejGry" Type="RozegranaGra" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

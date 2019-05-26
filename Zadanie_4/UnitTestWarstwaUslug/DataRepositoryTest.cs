@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WarstwaUslug;
 using System.Collections.Generic;
 using System.Linq;
+using WarstwaDanych;
 
 namespace UnitTestKasyno
 {

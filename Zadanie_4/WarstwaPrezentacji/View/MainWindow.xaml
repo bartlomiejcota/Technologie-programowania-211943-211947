@@ -14,7 +14,7 @@
         <TextBlock Text="Id gry" HorizontalAlignment="Left" Margin="24,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock Text="Nazwa gry" HorizontalAlignment="Left" Margin="24,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock Text="Informacje o grze" HorizontalAlignment="Left" Margin="24,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding NewIdGry}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="131,30,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="131,30,0,0"/>
         <TextBox Text="{Binding NewNazwaGry}" HorizontalAlignment="Left" Height="23" Margin="131,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding NewInformacjeOGrze}" HorizontalAlignment="Left" Height="23" Margin="131,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataBase">
+  <DataContextMoniker Name="/DataBaseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="cd44484b-6878-4c49-9858-308b77429c24" absoluteBounds="0.75, 1.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DataBaseDataContext/Gra" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7bcabfb4-6ac2-47a4-9641-46a7e2214297" absoluteBounds="0.765, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9b09f1cf-8ce9-422d-bcd1-9a5459c35507" absoluteBounds="3.5, 0.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DataBaseDataContext/RozegranaGra" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea1da9f6-24fd-46f6-a2dd-5a09b42e804e" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a6e91125-d754-4ba8-9872-4b5c84b3bb5e" absoluteBounds="3.5, 4.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataBaseDataContext/Gracz" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0eb2596e-632e-4778-ae9a-926c7e7da48d" absoluteBounds="3.515, 4.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bbea96cd-2df2-4c82-8028-5e0fe8f24554" absoluteBounds="6.25, 1.125, 2, 1.5785953776041664">
+      <DataClassMoniker Name="/DataBaseDataContext/Zdarzenie" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a114fa99-8311-4d82-b7be-55dfb395ee44" absoluteBounds="6.265, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.94314697265625); (3.5 : 1.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataBaseDataContext/Gra/Gra_RozegranaGra" />
+      <nodes>
+        <classShapeMoniker Id="cd44484b-6878-4c49-9858-308b77429c24" />
+        <classShapeMoniker Id="9b09f1cf-8ce9-422d-bcd1-9a5459c35507" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.91429768880208); (7.25 : 4.91429768880208); (7.25 : 2.70359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataBaseDataContext/Gracz/Gracz_Zdarzenie" />
+      <nodes>
+        <classShapeMoniker Id="a6e91125-d754-4ba8-9872-4b5c84b3bb5e" />
+        <classShapeMoniker Id="bbea96cd-2df2-4c82-8028-5e0fe8f24554" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.91429768880208); (6.25 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataBaseDataContext/RozegranaGra/RozegranaGra_Zdarzenie" />
+      <nodes>
+        <classShapeMoniker Id="9b09f1cf-8ce9-422d-bcd1-9a5459c35507" />
+        <classShapeMoniker Id="bbea96cd-2df2-4c82-8028-5e0fe8f24554" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

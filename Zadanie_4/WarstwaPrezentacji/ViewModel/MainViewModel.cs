@@ -5,6 +5,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using WarstwaUslug;
 using WarstwaPrezentacji.Model;
+using WarstwaDanych;
 
 namespace WarstwaPrezentacji.ViewModel
 {
@@ -109,9 +110,9 @@ namespace WarstwaPrezentacji.ViewModel
             {
                 dataLayer = value;
                 Gry = new ObservableCollection<Gra>(value.gryData);
-                Gracze = new ObservableCollection<Gracz>(value.graczeData);
-                RozegraneGry = new ObservableCollection<RozegranaGra>(value.rozegraneGryData);
-                Zdarzenia = new ObservableCollection<Zdarzenie>(value.zdarzeniaData);
+              //  Gracze = new ObservableCollection<Gracz>(value.graczeData);
+             //   RozegraneGry = new ObservableCollection<RozegranaGra>(value.rozegraneGryData);
+             //   Zdarzenia = new ObservableCollection<Zdarzenie>(value.zdarzeniaData);
             }
         }
 
