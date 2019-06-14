@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Prism.Commands;
-using Prism.Mvvm;
+//using Prism.Commands;
+//using Prism.Mvvm;
 using WarstwaUslug;
 using WarstwaPrezentacji.Model;
 using WarstwaDanych;
+using WarstwaPrezentacji.MVVM;
 
 namespace WarstwaPrezentacji.ViewModel
 {
-    public class MainViewModel : BindableBase
+    public class MainViewModel : ViewModelBase
     {
         // DataLayer
         private DataLayer dataLayer;
@@ -53,6 +54,9 @@ namespace WarstwaPrezentacji.ViewModel
             dataLayer = new DataLayer();
             GetDataCommand = new DelegateCommand(() => DataLayer = new DataLayer());
 
+            // SaveChanges
+            SaveChangesCommand = new DelegateCommand(SaveChanges);
+
             // Gra
             _gry = new ObservableCollection<Gra>();
             CreateGraCommand = new DelegateCommand(CreateGra);
@@ -80,6 +84,9 @@ namespace WarstwaPrezentacji.ViewModel
 
         // DataLayer
         public DelegateCommand GetDataCommand { get; private set; }
+
+        // SaveChanges
+        public DelegateCommand SaveChangesCommand { get; private set; }
 
         // Gra
         public DelegateCommand CreateGraCommand { get; private set; }
@@ -110,10 +117,16 @@ namespace WarstwaPrezentacji.ViewModel
             {
                 dataLayer = value;
                 Gry = new ObservableCollection<Gra>(value.gryData);
-              //  Gracze = new ObservableCollection<Gracz>(value.graczeData);
-             //   RozegraneGry = new ObservableCollection<RozegranaGra>(value.rozegraneGryData);
-             //   Zdarzenia = new ObservableCollection<Zdarzenie>(value.zdarzeniaData);
+                Gracze = new ObservableCollection<Gracz>(value.graczeData);
+                RozegraneGry = new ObservableCollection<RozegranaGra>(value.rozegraneGryData);
+                Zdarzenia = new ObservableCollection<Zdarzenie>(value.zdarzeniaData);
             }
+        }
+
+        // SaveChanges
+        public void SaveChanges()
+        {
+            Task.Run(() => { DataRepository.SaveChanges(); });
         }
 
         //Gra
@@ -123,7 +136,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewIdGry = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public string NewNazwaGry
@@ -132,7 +145,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewNazwaGry = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public string NewInformacjeOGrze
@@ -141,7 +154,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewInformacjeOGrze = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -151,7 +164,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _biezacaGra = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -161,7 +174,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _gry = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -203,7 +216,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewIdGracza = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public string NewImie
@@ -212,7 +225,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewImie = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public string NewNazwisko
@@ -221,7 +234,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewNazwisko = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public DateTime NewDataUrodzin
@@ -230,7 +243,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewDataUrodzin = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -240,7 +253,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _biezacyGracz = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -250,7 +263,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _gracze = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -282,7 +295,7 @@ namespace WarstwaPrezentacji.ViewModel
         private void DeleteGracz()
         {
             //walidacja gdy nie ma zaznaczonego gracza
-            Task.Run(() => { DataRepository.DeleteGra(_biezacyGracz.IdGracza); });
+            Task.Run(() => { DataRepository.DeleteGracz(_biezacyGracz.IdGracza); });
             _gracze.Remove(_biezacyGracz);
         }
 
@@ -293,7 +306,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewIdRozegranejGry = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public int NewGra
@@ -302,7 +315,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewGra = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public DateTime NewCzasRozpoczeciaGry
@@ -311,7 +324,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewCzasRozpoczeciaGry = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public TimeSpan NewCzasTrwaniaGry
@@ -320,7 +333,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewCzasTrwaniaGry = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public float NewOplataWejsciowa
@@ -329,7 +342,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewOplataWejsciowa = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public float NewMinimalnyDepozyt
@@ -338,7 +351,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewMinimalnyDepozyt = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -348,7 +361,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _biezacaRozegranaGra = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -358,7 +371,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _rozegraneGry = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -406,7 +419,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewIdZdarzenia = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public int NewUczestnikGry
@@ -415,7 +428,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewUczestnikGry = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public int NewUkonczonaGra
@@ -424,7 +437,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewUkonczonaGra = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
         public float NewWygrana
@@ -433,7 +446,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _NewWygrana = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -443,7 +456,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _biezaceZdarzenie = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 
@@ -453,7 +466,7 @@ namespace WarstwaPrezentacji.ViewModel
             set
             {
                 _zdarzenia = value;
-                RaisePropertyChanged();
+                RaisePropertyEventChanged();
             }
         }
 

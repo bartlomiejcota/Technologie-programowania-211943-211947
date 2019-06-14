@@ -14,7 +14,7 @@ namespace UnitTestKasyno
         public void TestInitialize()
         {
             DataRepository.DataContext = new DataBaseDataContext();
-            DataRepository.WypelnijDanymi(10, 10, 10, 10);
+            DataRepository.WypelnijDanymi(1, 1, 1, 1);
         }
 
         // Create test
@@ -67,7 +67,7 @@ namespace UnitTestKasyno
                 IdRozegranejGry = iloscRozegranychGierPrzed,
                 Gra = iloscRozegranychGierPrzed % DataRepository.ReadAllGra().Count(),
                 CzasRozpoczeciaGry = new DateTime(1950 + iloscRozegranychGierPrzed % 50, iloscRozegranychGierPrzed % 11 + 1, iloscRozegranychGierPrzed % 28 + 1),
-                CzasTrwaniaGry = new TimeSpan(iloscRozegranychGierPrzed % 24, iloscRozegranychGierPrzed % 60, iloscRozegranychGierPrzed % 59 +1),
+                CzasTrwaniaGry = new TimeSpan(iloscRozegranychGierPrzed % 24, iloscRozegranychGierPrzed % 60, iloscRozegranychGierPrzed % 59 + 1),
                 OplataWejsciowa = (iloscRozegranychGierPrzed % 5) * 5,
                 MinimalnyDepozyt = (iloscRozegranychGierPrzed % 6) * 6
             };

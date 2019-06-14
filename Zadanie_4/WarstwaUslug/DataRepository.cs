@@ -8,72 +8,49 @@ namespace WarstwaUslug
     public class DataRepository // DataRepository - funkcjonalność CRUD
     {
         private static DataBaseDataContext dataBaseDataContext = new DataBaseDataContext();
-        
+
         public static DataBaseDataContext DataContext
         {
             get => dataBaseDataContext;
             set => dataBaseDataContext = value;
         }
 
-        // Add
-        public static void CreateGracz(Gracz gracz)
+        //SaveChanges
+        public static void SaveChanges()
         {
-            dataBaseDataContext.Gracz.InsertOnSubmit(gracz);
             try
             {
                 dataBaseDataContext.SubmitChanges();
             }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
             {
-
             }
+
+        }
+
+        // Add
+        public static void CreateGracz(Gracz gracz)
+        {
+            dataBaseDataContext.Gracz.InsertOnSubmit(gracz);
+            SaveChanges();
         }
 
         public static void CreateGra(Gra gra)
         {
             dataBaseDataContext.Gra.InsertOnSubmit(gra);
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         public static void CreateRozegranaGra(RozegranaGra rozegranaGra)
         {
             dataBaseDataContext.RozegranaGra.InsertOnSubmit(rozegranaGra);
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         public static void CreateZdarzenie(Zdarzenie zdarzenie)
         {
             dataBaseDataContext.Zdarzenie.InsertOnSubmit(zdarzenie);
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         // Delete
@@ -82,22 +59,13 @@ namespace WarstwaUslug
             Gra gra = (from gry in dataBaseDataContext.Gra
                        where gry.IdGry == id
                        select gry).First();
-                       
+
             if (gra != null)
             {
                 dataBaseDataContext.Gra.DeleteOnSubmit(gra);
             }
 
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         public static void DeleteGracz(int id)
@@ -111,16 +79,7 @@ namespace WarstwaUslug
                 dataBaseDataContext.Gracz.DeleteOnSubmit(gracz);
             }
 
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         public static void DeleteRozegranaGra(int id)
@@ -134,16 +93,7 @@ namespace WarstwaUslug
                 dataBaseDataContext.RozegranaGra.DeleteOnSubmit(rozegranaGra);
             }
 
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         public static void DeleteZdarzenie(int idZdarzenia)
@@ -157,20 +107,11 @@ namespace WarstwaUslug
                 dataBaseDataContext.Zdarzenie.DeleteOnSubmit(zdarzenie);
             }
 
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         // Get all
-        public static IEnumerable<Gra> ReadAllGra()
+        public static List<Gra> ReadAllGra()
         {
             List<Gra> result = (from gry in dataBaseDataContext.Gra
                                 select gry).ToList();
@@ -178,15 +119,15 @@ namespace WarstwaUslug
             return result;
         }
 
-        public static IEnumerable<Gracz> ReadAllGracz()
+        public static List<Gracz> ReadAllGracz()
         {
             List<Gracz> result = (from gracze in dataBaseDataContext.Gracz
                                   select gracze).ToList();
-                       
+
             return result;
         }
 
-        public static IEnumerable<RozegranaGra> ReadAllRozegranaGra()
+        public static List<RozegranaGra> ReadAllRozegranaGra()
         {
             List<RozegranaGra> result = (from rozegraneGry in dataBaseDataContext.RozegranaGra
                                          select rozegraneGry).ToList();
@@ -194,7 +135,7 @@ namespace WarstwaUslug
             return result;
         }
 
-        public static IEnumerable<Zdarzenie> ReadAllZdarzenie()
+        public static List<Zdarzenie> ReadAllZdarzenie()
         {
             List<Zdarzenie> result = (from zdarzenia in dataBaseDataContext.Zdarzenie
                                       select zdarzenia).ToList();
@@ -206,8 +147,8 @@ namespace WarstwaUslug
         public static Gra ReadGra(int id)
         {
             Gra gra = (from gry in dataBaseDataContext.Gra
-                          where gry.IdGry == id
-                          select gry).First();
+                       where gry.IdGry == id
+                       select gry).First();
 
             return gra;
         }
@@ -215,8 +156,8 @@ namespace WarstwaUslug
         public static Gracz ReadGracz(int id)
         {
             Gracz gracz = (from gracze in dataBaseDataContext.Gracz
-                            where gracze.IdGracza == id
-                            select gracze).First();
+                           where gracze.IdGracza == id
+                           select gracze).First();
 
             return gracz;
         }
@@ -224,8 +165,8 @@ namespace WarstwaUslug
         public static RozegranaGra ReadRozegranaGra(int id)
         {
             RozegranaGra rozegranaGra = (from rozegraneGry in dataBaseDataContext.RozegranaGra
-                                   where rozegraneGry.IdRozegranejGry == id
-                                   select rozegraneGry).First();
+                                         where rozegraneGry.IdRozegranejGry == id
+                                         select rozegraneGry).First();
 
             return rozegranaGra;
         }
@@ -233,11 +174,11 @@ namespace WarstwaUslug
         public static Zdarzenie ReadZdarzenie(int idZdarzenia)
         {
             Zdarzenie zdarzenie = (from zdarzenia in dataBaseDataContext.Zdarzenie
-                                   where zdarzenia.IdZdarzenia == idZdarzenia 
+                                   where zdarzenia.IdZdarzenia == idZdarzenia
                                    select zdarzenia).First();
 
             return zdarzenie;
-    }
+        }
 
         // Update
         public static void UpdateGra(Gra gra)
@@ -247,16 +188,7 @@ namespace WarstwaUslug
             updateGra.NazwaGry = gra.NazwaGry;
             updateGra.InformacjeOGrze = gra.InformacjeOGrze;
 
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         public static void UpdateGracz(Gracz gracz)
@@ -267,16 +199,7 @@ namespace WarstwaUslug
             updateGracz.Nazwisko = gracz.Nazwisko;
             updateGracz.DataUrodzin = gracz.DataUrodzin;
 
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         public static void UpdateRozegranaGra(RozegranaGra rozegranaGra)
@@ -289,16 +212,7 @@ namespace WarstwaUslug
             updateRozegranaGra.OplataWejsciowa = rozegranaGra.OplataWejsciowa;
             updateRozegranaGra.MinimalnyDepozyt = rozegranaGra.MinimalnyDepozyt;
 
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         public static void UpdateZdarzenie(Zdarzenie zdarzenie)
@@ -309,29 +223,20 @@ namespace WarstwaUslug
             updateZdarzenie.UkonczonaGra = zdarzenie.UkonczonaGra;
             updateZdarzenie.Wygrana = zdarzenie.Wygrana;
 
-            try
-            {
-                dataBaseDataContext.SubmitChanges();
-            }
-#pragma warning disable CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            catch (Exception e)
-#pragma warning restore CS0168 // Zmienna „e” jest zadeklarowana, lecz nie jest nigdy używana
-            {
-
-            }
+            SaveChanges();
         }
 
         // Wypełnianie danymi
         public static void WypelnijDanymi(int iloscGraczy, int iloscGier, int iloscRozegranychGier, int iloscZdarzen)
         {
             // Dodawanie graczy
-           // int iloscGraczyPrzed = 0;
-          //  if (DataRepository.ReadAllGracz().Count() != 0)
-          //  {
-                int iloscGraczyPrzed = DataRepository.ReadAllGracz().Last().IdGracza;
-          //  }
-         
-            for (int i = iloscGraczyPrzed + 1; i < iloscGraczyPrzed + 1 + iloscGraczy; i++)
+            int iloscGraczyPrzed = 0;
+            if (DataRepository.ReadAllGracz().Count() != 0)
+            {
+                iloscGraczyPrzed = DataRepository.ReadAllGracz().Last().IdGracza + 1;
+            }
+
+            for (int i = iloscGraczyPrzed; i < iloscGraczyPrzed + iloscGraczy; i++)
             {
                 Gracz gracz = new Gracz()
                 {
@@ -345,13 +250,13 @@ namespace WarstwaUslug
             }
 
             // Dodawanie gier
-          //  int iloscGierPzed = 0;
-         //   if (DataRepository.ReadAllGra().Count() != 0)
-          //  {
-                int iloscGierPzed = DataRepository.ReadAllGra().Last().IdGry;
-          //  }
+            int iloscGierPzed = 0;
+            if (DataRepository.ReadAllGra().Count() != 0)
+            {
+                iloscGierPzed = DataRepository.ReadAllGra().Last().IdGry + 1;
+            }
 
-            for (int i = iloscGierPzed + 1; i < iloscGierPzed + 1 + iloscGier; i++)
+            for (int i = iloscGierPzed; i < iloscGierPzed + iloscGier; i++)
             {
                 Gra gra = new Gra()
                 {
@@ -364,13 +269,13 @@ namespace WarstwaUslug
             }
 
             // Dodawanie rozegranych gier
-           // int iloscRozegranychGierPrzed = 0;
-           // if (DataRepository.ReadAllRozegranaGra().Count() != 0)
-           // {
-                int iloscRozegranychGierPrzed = DataRepository.ReadAllRozegranaGra().Last().IdRozegranejGry;
-         //   }
+            int iloscRozegranychGierPrzed = 0;
+            if (DataRepository.ReadAllRozegranaGra().Count() != 0)
+            {
+                iloscRozegranychGierPrzed = DataRepository.ReadAllRozegranaGra().Last().IdRozegranejGry + 1;
+            }
 
-            for (int i = iloscRozegranychGierPrzed + 1; i < iloscRozegranychGierPrzed + 1 + iloscRozegranychGier; i++)
+            for (int i = iloscRozegranychGierPrzed; i < iloscRozegranychGierPrzed + iloscRozegranychGier; i++)
             {
                 RozegranaGra rozegranaGra = new RozegranaGra()
                 {
@@ -386,13 +291,13 @@ namespace WarstwaUslug
             }
 
             // Dodawanie Zdarzeń
-           // int iloscZdarzenPrzed = 0;
-           // if (DataRepository.ReadAllZdarzenie().Count() != 0)
-          //  {
-                int iloscZdarzenPrzed = DataRepository.ReadAllZdarzenie().Last().IdZdarzenia;
-          //  }
+            int iloscZdarzenPrzed = 0;
+            if (DataRepository.ReadAllZdarzenie().Count() != 0)
+            {
+                iloscZdarzenPrzed = DataRepository.ReadAllZdarzenie().Last().IdZdarzenia + 1;
+            }
 
-            for (int i = iloscZdarzenPrzed + 1; i < iloscZdarzenPrzed + 1 + iloscZdarzen; i++)
+            for (int i = iloscZdarzenPrzed; i < iloscZdarzenPrzed + iloscZdarzen; i++)
             {
                 Zdarzenie zdarzenie = new Zdarzenie()
                 {
