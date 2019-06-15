@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-//using Prism.Commands;
-//using Prism.Mvvm;
 using WarstwaUslug;
 using WarstwaPrezentacji.Model;
 using WarstwaDanych;
-using WarstwaPrezentacji.MVVM;
+using System.ComponentModel;
 
 namespace WarstwaPrezentacji.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : INotifyPropertyChanged
     {
+        // INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void RaisePropertyEventChanged(string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         // DataLayer
         private DataLayer dataLayer;
 
@@ -194,17 +200,11 @@ namespace WarstwaPrezentacji.ViewModel
 
         private void UpdateGra()
         {
-            //warunek gry nie ma zaznaczonej gry
-            //warunek jak któreś pole jest niezmieniane
-            _biezacaGra.NazwaGry = _NewNazwaGry;
-            _biezacaGra.InformacjeOGrze = _NewInformacjeOGrze;
-
             Task.Run(() => { DataRepository.UpdateGra(_biezacaGra); });
         }
 
         private void DeleteGra()
         {
-            //walidacja gdy nie ma zaznaczonej gry
             Task.Run(() => { DataRepository.DeleteGra(_biezacaGra.IdGry); });
             _gry.Remove(_biezacaGra);
         }
@@ -284,17 +284,11 @@ namespace WarstwaPrezentacji.ViewModel
 
         private void UpdateGracz()
         {
-            //warunek gry nie ma zaznaczonego gracza
-            //warunek jak któreś pole jest niezmieniane
-            _biezacyGracz.Imie = _NewImie;
-            _biezacyGracz.Nazwisko = _NewNazwisko;
-            _biezacyGracz.DataUrodzin = _NewDataUrodzin;
             Task.Run(() => { DataRepository.UpdateGracz(_biezacyGracz); });
         }
 
         private void DeleteGracz()
         {
-            //walidacja gdy nie ma zaznaczonego gracza
             Task.Run(() => { DataRepository.DeleteGracz(_biezacyGracz.IdGracza); });
             _gracze.Remove(_biezacyGracz);
         }
@@ -394,20 +388,11 @@ namespace WarstwaPrezentacji.ViewModel
 
         private void UpdateRozegranaGra()
         {
-            //warunek gry nie ma zaznaczonej rozegranej gry
-            //warunek jak któreś pole jest niezmieniane
-            _biezacaRozegranaGra.Gra = _NewGra;
-            _biezacaRozegranaGra.CzasRozpoczeciaGry = _NewCzasRozpoczeciaGry;
-            _biezacaRozegranaGra.CzasTrwaniaGry = _NewCzasTrwaniaGry;
-            _biezacaRozegranaGra.OplataWejsciowa = _NewOplataWejsciowa;
-            _biezacaRozegranaGra.MinimalnyDepozyt = _NewMinimalnyDepozyt;
-
             Task.Run(() => { DataRepository.UpdateRozegranaGra(_biezacaRozegranaGra); });
         }
 
         private void DeleteRozegranaGra()
         {
-            //walidacja gdy nie ma zaznaczonej rozegranej gry
             Task.Run(() => { DataRepository.DeleteRozegranaGra(_biezacaRozegranaGra.IdRozegranejGry); });
             _rozegraneGry.Remove(_biezacaRozegranaGra);
         }
@@ -487,19 +472,11 @@ namespace WarstwaPrezentacji.ViewModel
 
         private void UpdateZdarzenie()
         {
-            //warunek gry nie ma zaznaczonego zdarzenia
-            //warunek jak któreś pole jest niezmieniane
-            _biezaceZdarzenie.IdZdarzenia = _NewIdZdarzenia;
-            _biezaceZdarzenie.UczestnikGry = _NewUczestnikGry;
-            _biezaceZdarzenie.UkonczonaGra = _NewUkonczonaGra;
-            _biezaceZdarzenie.Wygrana = _NewWygrana;
-
             Task.Run(() => { DataRepository.UpdateZdarzenie(_biezaceZdarzenie); });
         }
 
         private void DeleteZdarzenie()
         {
-            //walidacja gdy nie ma zaznaczonego zdarzenia
             Task.Run(() => { DataRepository.DeleteZdarzenie(_biezaceZdarzenie.IdZdarzenia); });
             _zdarzenia.Remove(_biezaceZdarzenie);
         }
