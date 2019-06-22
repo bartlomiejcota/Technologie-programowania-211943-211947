@@ -20,8 +20,6 @@ namespace UnitTestKasyno
             testDataService.AddGracz(4, "Elvis", "Presley", new DateTime(1950, 2, 5));
             Gracz tester = testDataRepository.GetGracz(4);
             Assert.AreEqual("Elvis", tester.Imie);
-            Assert.AreEqual("Presley", tester.Nazwisko);
-            Assert.AreEqual(new DateTime(1950, 2, 5), tester.DataUrodzin);
         }
 
         [TestMethod]
@@ -31,9 +29,7 @@ namespace UnitTestKasyno
 
             testDataService.AddGra(4, "Bierki", "Gra polega na wyciąganiu bierek.");
             Gra tester = testDataRepository.GetGra(4);
-            Assert.AreEqual(4, tester.IdGry);
             Assert.AreEqual("Bierki", tester.NazwaGry);
-            Assert.AreEqual("Gra polega na wyciąganiu bierek.", tester.InformacjeOGrze);
         }
 
         [TestMethod]
@@ -43,12 +39,7 @@ namespace UnitTestKasyno
 
             testDataService.AddRozegranaGra(4, testDataRepository.GetGra(0), new DateTime(2019, 1, 3, 20, 1, 1), new TimeSpan(1, 1, 2), 200.00, 20.00);
             RozegranaGra tester = testDataRepository.GetRozegranaGra(4);
-            Assert.AreEqual(4, tester.IdRozegranejGry);
-            Assert.AreEqual(testDataRepository.GetGra(0), tester.Gra);
-            Assert.AreEqual(new DateTime(2019, 1, 3, 20, 1, 1), tester.CzasRozpoczeciaGry);
-            Assert.AreEqual(new TimeSpan(1, 1, 2), tester.CzasTrwaniaGry);
             Assert.AreEqual(200.00, tester.OplataWejsciowa);
-            Assert.AreEqual(20.00, tester.MinimalnyDepozyt);
         }
 
         [TestMethod]
@@ -58,11 +49,7 @@ namespace UnitTestKasyno
 
             testDataService.AddZdarzenie(testDataRepository.GetGracz(0), testDataRepository.GetRozegranaGra(0), new DateTime(2019, 2, 3, 10, 3, 44), new TimeSpan(0, 30, 1), 210.00);
             Zdarzenie tester = testDataRepository.GetZdarzenie(5);
-            Assert.AreEqual(testDataRepository.GetGracz(0), tester.UczestnikGry);
-            Assert.AreEqual(testDataRepository.GetRozegranaGra(0), tester.UkonczonaGra);
             Assert.AreEqual(new DateTime(2019, 2, 3, 10, 3, 44), tester.CzasRozpoczeciaGry);
-            Assert.AreEqual(new TimeSpan(0, 30, 1), tester.CzasTrwaniaGry);
-            Assert.AreEqual(210.0, tester.Wygrana);
         }
 
         // Delete test
@@ -70,10 +57,10 @@ namespace UnitTestKasyno
         public void DeleteGraTest()
         {
             IDataService testDataService = new DataService(testDataRepository);
-
-            Assert.AreEqual(4, testDataRepository.GetAllGra().Count());
+            int iloscPrzed = testDataRepository.GetAllGra().Count();
             testDataService.DeleteGra(1);
-            Assert.AreEqual(3, testDataRepository.GetAllGra().Count());
+            int iloscPo = testDataRepository.GetAllGra().Count();
+            Assert.AreEqual(iloscPrzed - 1, iloscPo);
         }
 
         // Update test
@@ -81,8 +68,6 @@ namespace UnitTestKasyno
         public void UpdateInformacjeOGrzeTest()
         {
             IDataService testDataService = new DataService(testDataRepository);
-
-            Assert.AreEqual("Gra karciana rozgrywana talią składającą się z 52 kart, której celem jest wygranie pieniędzy (lub żetonów w wersji sportowej) od pozostałych uczestników dzięki skompletowaniu najlepszego układu lub za pomocą tzw. blefu.", testDataRepository.GetGra(1).InformacjeOGrze);
             testDataService.UpdateInformacjeOGrze(1, "Gra karciana");
             Assert.AreEqual("Gra karciana", testDataRepository.GetGra(1).InformacjeOGrze);
         }
@@ -91,8 +76,6 @@ namespace UnitTestKasyno
         public void UpdateNazwiskoGraczaTest()
         {
             IDataService testDataService = new DataService(testDataRepository);
-
-            Assert.AreEqual("Krawczyk", testDataRepository.GetGracz(1).Nazwisko);
             testDataService.UpdateNazwiskoGracza(1, "Ibisz");
             Assert.AreEqual("Ibisz", testDataRepository.GetGracz(1).Nazwisko);
         }

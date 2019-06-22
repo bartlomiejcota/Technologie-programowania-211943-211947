@@ -14,16 +14,9 @@ namespace UnitTestKasyno
         {
             IDataRepository dataRepository = new DataRepository(new WypelnianieLosowymi(100, 90, 80, 70));
             IDataService dataService = new DataService(dataRepository);
+            int ilosc = dataRepository.GetAllGracz().Count() + dataRepository.GetAllGra().Count() + dataRepository.GetAllRozegranaGra().Count() + dataRepository.GetAllZdarzenie().Count();
 
-            Assert.AreEqual(100, dataRepository.GetAllGracz().Count());
-            Assert.AreEqual(90, dataRepository.GetAllGra().Count());
-            Assert.AreEqual(80, dataRepository.GetAllRozegranaGra().Count());
-            Assert.AreEqual(70, dataRepository.GetAllZdarzenie().Count());
-
-            dataService.PrintAllGracz();
-            dataService.PrintAllGra();
-            dataService.PrintAllRozegranaGra();
-            dataService.PrintAllZdarzenie();
+            Assert.AreEqual(340, ilosc);
         }
 
         // Wypełnianie średnim wolumenem danych losowych
@@ -32,16 +25,9 @@ namespace UnitTestKasyno
         {
             IDataRepository dataRepository = new DataRepository(new WypelnianieLosowymi(1000, 900, 800, 700));
             IDataService dataService = new DataService(dataRepository);
+            int ilosc = dataRepository.GetAllGracz().Count() + dataRepository.GetAllGra().Count() + dataRepository.GetAllRozegranaGra().Count() + dataRepository.GetAllZdarzenie().Count();
 
-            Assert.AreEqual(1000, dataRepository.GetAllGracz().Count());
-            Assert.AreEqual(900, dataRepository.GetAllGra().Count());
-            Assert.AreEqual(800, dataRepository.GetAllRozegranaGra().Count());
-            Assert.AreEqual(700, dataRepository.GetAllZdarzenie().Count());
-
-            dataService.PrintAllGracz();
-            dataService.PrintAllGra();
-            dataService.PrintAllRozegranaGra();
-            dataService.PrintAllZdarzenie();
+            Assert.AreEqual(3400, ilosc);
         }
 
         //Wypełnianie dużym wolumenem danych losowych
@@ -50,16 +36,9 @@ namespace UnitTestKasyno
         {
             IDataRepository dataRepository = new DataRepository(new WypelnianieLosowymi(10000, 9000, 8000, 7000));
             IDataService dataService = new DataService(dataRepository);
+            int ilosc = dataRepository.GetAllGracz().Count() + dataRepository.GetAllGra().Count() + dataRepository.GetAllRozegranaGra().Count() + dataRepository.GetAllZdarzenie().Count();
 
-            Assert.AreEqual(10000, dataRepository.GetAllGracz().Count());
-            Assert.AreEqual(9000, dataRepository.GetAllGra().Count());
-            Assert.AreEqual(8000, dataRepository.GetAllRozegranaGra().Count());
-            Assert.AreEqual(7000, dataRepository.GetAllZdarzenie().Count());
-
-            dataService.PrintAllGracz();
-            dataService.PrintAllGra();
-            dataService.PrintAllRozegranaGra();
-            dataService.PrintAllZdarzenie();
+            Assert.AreEqual(34000, ilosc);
         }
     }
 }

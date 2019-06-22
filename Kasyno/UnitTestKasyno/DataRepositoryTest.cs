@@ -54,40 +54,38 @@ namespace UnitTestKasyno
         public void DeleteGraTest()
         {
             IEnumerable<KeyValuePair<int, Gra>> gry = testDataRepository.GetAllGra();
-            Assert.AreEqual(4, gry.Count());
+            int iloscPrzed = gry.Count();
             testDataRepository.DeleteGra(3);
             gry = testDataRepository.GetAllGra();
-            Assert.AreEqual(3, gry.Count());
+            int iloscPo = gry.Count();
+            Assert.AreEqual(iloscPrzed - 1, iloscPo);
         }
 
         [TestMethod]
         public void DeleteGraczTest()
         {
-            Assert.AreEqual(4, testDataRepository.GetAllGracz().Count());
-            Gracz tester = testDataRepository.GetGracz(3);
+            int iloscPrzed = testDataRepository.GetAllGracz().Count();
             testDataRepository.DeleteGracz(1);
-            Assert.AreEqual(3, testDataRepository.GetAllGracz().Count());
-            Assert.AreEqual(tester, testDataRepository.GetGracz(2));
+            int iloscPo = testDataRepository.GetAllGracz().Count();
+            Assert.AreEqual(iloscPrzed - 1, iloscPo);
         }
 
         [TestMethod]
         public void DeleteRozegranaGraTest()
         {
-            Assert.AreEqual(4, testDataRepository.GetAllRozegranaGra().Count());
-            RozegranaGra rozegranaGra1 = testDataRepository.GetRozegranaGra(2);
+            int iloscPrzed = testDataRepository.GetAllRozegranaGra().Count();
             testDataRepository.DeleteRozegranaGra(1);
-            Assert.AreEqual(3, testDataRepository.GetAllRozegranaGra().Count());
-            Assert.AreEqual(rozegranaGra1, testDataRepository.GetRozegranaGra(1));
+            int iloscPo = testDataRepository.GetAllRozegranaGra().Count();
+            Assert.AreEqual(iloscPrzed - 1, iloscPo);
         }
 
         [TestMethod]
         public void DeleteZdarzenieTest()
         {
-            Assert.AreEqual(5, testDataRepository.GetAllZdarzenie().Count());
-            Zdarzenie zdarzenie1 = testDataRepository.GetZdarzenie(2);
+            int iloscPrzed = testDataRepository.GetAllZdarzenie().Count();
             testDataRepository.DeleteZdarzenie(1);
-            Assert.AreEqual(4, testDataRepository.GetAllZdarzenie().Count());
-            Assert.AreEqual(zdarzenie1, testDataRepository.GetZdarzenie(1));
+            int iloscPo = testDataRepository.GetAllZdarzenie().Count();
+            Assert.AreEqual(iloscPrzed - 1, iloscPo);
         }
 
         // Get all
@@ -96,7 +94,6 @@ namespace UnitTestKasyno
         {
             IEnumerable<KeyValuePair<int, Gra>> gry = testDataRepository.GetAllGra();
             Assert.AreEqual(4, gry.Count());
-            Assert.AreEqual("Bakarat", gry.ElementAt(2).Value.NazwaGry);
         }
 
         [TestMethod]
@@ -104,39 +101,34 @@ namespace UnitTestKasyno
         {
             IEnumerable<Gra> gry = testDataRepository.GetAllGraIEnumerable();
             Assert.AreEqual(4, gry.Count());
-            Assert.AreEqual("Bakarat", gry.ElementAt(2).NazwaGry);
         }
 
         [TestMethod]
         public void GetAllGraczTest()
         {
             IEnumerable<Gracz> gracze = testDataRepository.GetAllGracz();
-            Assert.AreEqual(4, gracze.Count());
-            Assert.AreEqual("Kamil", gracze.ElementAt(2).Imie);
-            Assert.AreEqual("Bednarek", gracze.ElementAt(2).Nazwisko);
-            Assert.AreEqual(new DateTime(1983, 3, 3), gracze.ElementAt(2).DataUrodzin);
+            Gracz gracz1 = new Gracz(2, "Kamil", "Bednarek", new DateTime(1983, 03, 03));
+            Assert.AreEqual(gracz1.Imie, gracze.ElementAt(2).Imie);
         }
 
         [TestMethod]
         public void GetAllRozegranaGraTest()
         {
             IEnumerable<RozegranaGra> rozegraneGry = testDataRepository.GetAllRozegranaGra();
-            Assert.AreEqual(4, rozegraneGry.Count());
-            Assert.AreEqual(2, rozegraneGry.ElementAt(2).IdRozegranejGry);
-            Assert.AreEqual(new DateTime(2019, 1, 3, 20, 35, 30), rozegraneGry.ElementAt(2).CzasRozpoczeciaGry);
-            Assert.AreEqual(70.00, rozegraneGry.ElementAt(2).OplataWejsciowa);
+            Gra gra3 = new Gra(2, "Bakarat", "Popularna gra, rozgrywana między bankierem (stałym lub zmiennym – którego wybiera się spośród graczy) i kolejno z każdym z graczy. O wyniku rozgrywki decyduje liczba zdobytych punktów w 2 lub 3 kartach, zliczanych według precyzyjnie określonych reguł.");
+            RozegranaGra rozegranaGra1 = new RozegranaGra(2, gra3, new DateTime(2019, 1, 3, 20, 35, 30), new TimeSpan(0, 56, 44), 70.00, 10.00);
+            Assert.AreEqual(rozegranaGra1.MinimalnyDepozyt, rozegraneGry.ElementAt(2).MinimalnyDepozyt);
         }
 
         [TestMethod]
         public void GetAllZdarzenieTest()
         {
             IEnumerable<Zdarzenie> zdarzenia = testDataRepository.GetAllZdarzenie();
-            Assert.AreEqual(5, zdarzenia.Count());
-            Assert.AreEqual("Jan", zdarzenia.ElementAt(0).UczestnikGry.Imie);
-            Assert.AreEqual("Kowalski", zdarzenia.ElementAt(0).UczestnikGry.Nazwisko);
-            Assert.AreEqual(new DateTime(2019, 1, 1, 20, 10, 15), zdarzenia.ElementAt(0).CzasRozpoczeciaGry);
-            Assert.AreEqual(new TimeSpan(0, 31, 35), zdarzenia.ElementAt(0).CzasTrwaniaGry);
-            Assert.AreEqual(350.00, zdarzenia.ElementAt(0).Wygrana);
+            Gracz gracz = new Gracz(0, "Jan", "Kowalski", new DateTime(1981, 1, 1));
+            Gra gra = new Gra(0, "Ruletka", "Pseudolosowa gra, grana w większości kasyn. Są dwa systemy ruletki: europejski i amerykański. Suma wszystkich liczb w ruletce daje 666, stąd określenie 'szatańska gra'.");
+            RozegranaGra rozegranaGra = new RozegranaGra(0, gra, new DateTime(2019, 1, 1, 20, 10, 15), new TimeSpan(0, 31, 35), 100.00, 10.00);
+            Zdarzenie zdarzenie = new Zdarzenie(gracz, rozegranaGra, new DateTime(2019, 1, 1, 20, 10, 15), new TimeSpan(0, 31, 35), 350.00);
+            Assert.AreEqual(zdarzenie.Wygrana, zdarzenia.ElementAt(0).Wygrana);
         }
 
         // Get
@@ -145,7 +137,6 @@ namespace UnitTestKasyno
         {
             Gra gra1 = testDataRepository.GetGra(1);
             Assert.AreEqual("Poker", gra1.NazwaGry);
-            Assert.AreEqual("Gra karciana rozgrywana talią składającą się z 52 kart, której celem jest wygranie pieniędzy (lub żetonów w wersji sportowej) od pozostałych uczestników dzięki skompletowaniu najlepszego układu lub za pomocą tzw. blefu.", gra1.InformacjeOGrze);
         }
 
         [TestMethod]
@@ -153,8 +144,6 @@ namespace UnitTestKasyno
         {
             Gracz gracz1 = testDataRepository.GetGracz(0);
             Assert.AreEqual("Jan", gracz1.Imie);
-            Assert.AreEqual("Kowalski", gracz1.Nazwisko);
-            Assert.AreEqual(new DateTime(1981, 1, 1), gracz1.DataUrodzin);
         }
 
         [TestMethod]
@@ -162,21 +151,13 @@ namespace UnitTestKasyno
         {
             RozegranaGra rozegranaGra1 = testDataRepository.GetRozegranaGra(1);
             Assert.AreEqual(new DateTime(2019, 1, 2, 21, 11, 54), rozegranaGra1.CzasRozpoczeciaGry);
-            Assert.AreEqual(new TimeSpan(0, 15, 33), rozegranaGra1.CzasTrwaniaGry);
-            Assert.AreEqual(120.00, rozegranaGra1.OplataWejsciowa);
-            Assert.AreEqual(15.00, rozegranaGra1.MinimalnyDepozyt);
         }
 
         [TestMethod]
         public void GetZdarzenieTest()
         {
             Zdarzenie zdarzenie1 = testDataRepository.GetZdarzenie(0);
-            Assert.AreEqual(0, zdarzenie1.UczestnikGry.IdGracza);
             Assert.AreEqual("Jan", zdarzenie1.UczestnikGry.Imie);
-            Assert.AreEqual("Kowalski", zdarzenie1.UczestnikGry.Nazwisko);
-            Assert.AreEqual(0, zdarzenie1.UkonczonaGra.IdRozegranejGry);
-            Assert.AreEqual(new DateTime(2019, 1, 1, 20, 10, 15), zdarzenie1.CzasRozpoczeciaGry);
-            Assert.AreEqual(new TimeSpan(0, 31, 35), zdarzenie1.CzasTrwaniaGry);
         }
 
         // Update
