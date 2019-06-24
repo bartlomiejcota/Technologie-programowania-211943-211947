@@ -17,6 +17,11 @@ namespace UnitTestKasyno
             int ilosc = dataRepository.GetAllGracz().Count() + dataRepository.GetAllGra().Count() + dataRepository.GetAllRozegranaGra().Count() + dataRepository.GetAllZdarzenie().Count();
 
             Assert.AreEqual(340, ilosc);
+
+            dataService.PrintAllGracz();
+            dataService.PrintAllGra();
+            dataService.PrintAllRozegranaGra();
+            dataService.PrintAllZdarzenie();
         }
 
         // Wypełnianie średnim wolumenem danych losowych
@@ -28,6 +33,11 @@ namespace UnitTestKasyno
             int ilosc = dataRepository.GetAllGracz().Count() + dataRepository.GetAllGra().Count() + dataRepository.GetAllRozegranaGra().Count() + dataRepository.GetAllZdarzenie().Count();
 
             Assert.AreEqual(3400, ilosc);
+
+            dataService.PrintAllGracz();
+            dataService.PrintAllGra();
+            dataService.PrintAllRozegranaGra();
+            dataService.PrintAllZdarzenie();
         }
 
         //Wypełnianie dużym wolumenem danych losowych
@@ -39,6 +49,11 @@ namespace UnitTestKasyno
             int ilosc = dataRepository.GetAllGracz().Count() + dataRepository.GetAllGra().Count() + dataRepository.GetAllRozegranaGra().Count() + dataRepository.GetAllZdarzenie().Count();
 
             Assert.AreEqual(34000, ilosc);
+
+            dataService.PrintAllGracz();
+            dataService.PrintAllGra();
+            dataService.PrintAllRozegranaGra();
+            dataService.PrintAllZdarzenie();
         }
     }
 }
